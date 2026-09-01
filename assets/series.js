@@ -101,6 +101,44 @@
     return link;
   }
 
+  // Coordinates read N/S and E/W rather than as signed decimals: this is a
+  // caption on a page about places, not a data field.
+  function formatCoord(value, positive, negative) {
+    return Math.abs(value).toFixed(6) + '\u00b0 ' + (value >= 0 ? positive : negative);
+  }
+
+  function mapLink(href, text) {
+    var a = document.createElement('a');
+    a.href = href;
+    a.textContent = text;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    return a;
+  }
+
+  // Appends a "Where" line to the credits block. Pairs without location data in
+  // the manifest simply don't get one.
+  function renderWhere(pair) {
+    var credits = document.querySelector('.credits');
+    if (!credits || !pair.coords) return;
+
+    var lat = pair.coords[0], lon = pair.coords[1];
+    var line = document.createElement('p');
+    var tag = document.createElement('b');
+    tag.textContent = 'Where';
+    line.appendChild(tag);
+
+    line.appendChild(mapLink(
+      'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lon,
+      formatCoord(lat, 'N', 'S') + ', ' + formatCoord(lon, 'E', 'W')));
+
+    if (pair.streetview) {
+      line.appendChild(document.createTextNode(' \u00b7 '));
+      line.appendChild(mapLink(pair.streetview, 'Street View'));
+    }
+    credits.appendChild(line);
+  }
+
   function renderNav(slug, pairs) {
     var i = -1;
     pairs.forEach(function (p, n) { if (p.slug === slug) i = n; });
@@ -137,7 +175,10 @@
     if (grid) renderGrid(grid, pairs);
 
     var slug = document.body.getAttribute('data-pair');
-    if (slug) renderNav(slug, pairs);
+    if (slug) {
+      renderNav(slug, pairs);
+      pairs.forEach(function (p) { if (p.slug === slug) renderWhere(p); });
+    }
   }
 
   if (document.readyState === 'loading') {

@@ -445,6 +445,15 @@ a{color:inherit}
   color:var(--muted);
 }
 .credits p{margin:0;max-width:42ch}
+.credits a{
+  color:var(--muted);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+  transition:color .16s ease;
+}
+.credits a:hover{color:var(--card)}
+
 .credits b{
   display:block;
   font-weight:500;

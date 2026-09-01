@@ -82,6 +82,10 @@ re-aligned later.
    one assignment — edit it exactly as you would a `.json` file. Array order sets
    both the grid order and the prev/next order.
 
+   Two fields are optional: `coords` and `streetview`. When present, the pair
+   page grows a "Where" line in its credits linking to the map and the Street
+   View panorama. Pairs without them simply don't get one.
+
    ```json
    {
      "slug": "lackawanna-ave",
@@ -89,6 +93,8 @@ re-aligned later.
      "shortTitle": "Lackawanna Avenue",
      "location": "Lackawanna Avenue at Wyoming",
      "neighborhood": "Central City",
+     "coords": [41.408069, -75.663419],
+     "streetview": "https://www.google.com/maps/@...",
      "then": { "year": "c. 1905", "sort": 1905 },
      "now":  { "year": "Today",   "sort": null },
      "blurb": "One sentence on what survived and what didn't."

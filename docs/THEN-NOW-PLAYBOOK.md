@@ -86,10 +86,38 @@ crop and the HTML. The point-picking stays manual — that's the part that needs
 | Slug | Page | Then | Now | Fit |
 |---|---|---|---|---|
 | `terrace-hotel` | `pairs/terrace-hotel.html` | c. 1900 photograph | Street View | subject demolished; straight crop to the surviving wall |
+| `albright` | `pairs/albright.html` | c. 1900 photograph | Street View | straight crop; building essentially unaltered |
+| `courthouse-square` | `pairs/courthouse-square.html` | c. 1905 photograph | Street View | straight crop, anchored on the memorial column |
+| `hotel-jermyn` | `pairs/hotel-jermyn.html` | 1950s postcard | Street View | straight crop; camera happened to land in the right spot |
 | `high-school` | `pairs/high-school.html` | 1910 postcard | Street View | straight crop; spire and roof peak within ~1.5% |
 | `providence-auditorium` | `pairs/providence-auditorium.html` | c. 1910 postcard | Street View | **perspective-corrected**; four building corners match |
 | `scranton-dry-goods` | `pairs/scranton-dry-goods.html` | 1920s glass plate | Street View | **perspective-corrected**; six points agree within 2% |
 | `wyoming-ave` | `pairs/wyoming-ave.html` | mid-century linen card | Street View | straight crop; churches match, background tower ~3% off |
+
+**A full perspective correction is often too much.** `scranton-dry-goods`
+shipped with a homography that matched six points to within 2% — and looked
+wrong, because it sheared everything that was not the fitted building. The plate
+had been shot with a view camera holding its verticals parallel; Street View
+converges. Forcing one onto the other skews the surroundings.
+
+The fix is to use a *fraction* of the correction. Fit both a similarity (scale
+and translate only) and the full homography, then blend the two destination sets
+by a factor k and solve for the transform in between:
+
+```
+dest(k) = (1-k) * similarity(p) + k * homography(p)
+```
+
+| k | worst residual | look |
+|---|---|---|
+| 0.0 | 5.5% of width | undistorted, loosest fit |
+| 0.5 | ~3.5% | undistorted — **shipped** |
+| 0.7 | 2.9% | stretching becomes visible |
+| 1.0 | 2.0% | clearly distorted |
+
+Registration and believability pull in opposite directions here, and the eye
+notices distortion long before it notices a 3% misfit. Render the candidates side
+by side at the same crop and choose by looking, not by the residual.
 
 **When a straight crop can't get there.** Two of these pairs hit the limit, and
 they need opposite responses.
