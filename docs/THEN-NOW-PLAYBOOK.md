@@ -93,7 +93,7 @@ crop and the HTML. The point-picking stays manual — that's the part that needs
 | `providence-auditorium` | `pairs/providence-auditorium.html` | c. 1910 postcard | Street View | **perspective-corrected**; four building corners match |
 | `scranton-dry-goods` | `pairs/scranton-dry-goods.html` | 1920s glass plate | Street View | **perspective-corrected**; six points agree within 2% |
 | `wyoming-ave` | `pairs/wyoming-ave.html` | mid-century linen card | Street View | straight crop; churches match, background tower ~3% off |
-| `dickson-manufacturing` | `pairs/dickson-manufacturing.html` | c. 1895 photograph | Street View | straight crop, scaled 0.847 on the surviving tower; check point within 0.4% |
+| `dickson-manufacturing` | `pairs/dickson-manufacturing.html` | c. 1895 photograph | Street View | frame pre-aligned to the photograph; top 7% of the modern plate is reconstructed sky |
 | `lackawanna-ave-bridge` | `pairs/lackawanna-ave-bridge.html` | c. 1910 photograph | Street View | frames arrived pre-matched; crop only, no scaling; both halves upscaled 3.6x |
 
 **A full perspective correction is often too much.** `scranton-dry-goods`
@@ -206,6 +206,36 @@ very wide capture it can fall outside the aligned crop entirely, and nothing
 short of breaking the registration brings it back. Capture in a window whose
 proportions are closer to 2048x1271 and it survives the crop. Where it does
 not, the page credit carries the attribution instead.
+
+**When the modern frame does not cover the historical one.** Align the Street
+View shot into the historical image's own pixel frame and leave the uncovered
+strips transparent -- that is a far better handoff than a screenshot to be
+scaled, because the crop window is then identical for both plates and the
+historical half never has to move. `dickson-manufacturing` came in this way,
+2048x1574 with alpha, and registers better than the version fitted by hand.
+
+Where the modern capture falls short of the frame, reconstruct only what is
+safely reconstructible, and say on the page that you did:
+
+- **Sky extends well.** Fit a robust low-order surface to the clean sky, then
+  anchor it to the real pixels at the seam so the join is continuous. Estimate
+  that seam offset with outliers (clouds, wires) rejected and interpolated
+  across, or a cloud sitting under the seam smears upward as a bright smudge.
+- **Continue anything straight that crosses the seam.** Four overhead wires
+  crossed the top edge here; left alone they stop dead in mid-air along a
+  ruler-straight line, which is the single most obvious tell. Seed on each wire
+  at the seam, search that seed's own slope before tracking it (a wire will
+  otherwise lock onto a close neighbour with a different slope), then extend it.
+- **Patch enclosed UI with push-pull, not a fitted surface.** A polynomial fit
+  leaves a visible rectangle; boundary-driven interpolation is seamless by
+  construction. Two rules: the context must exclude every part of the thing you
+  are removing -- include the minimap body below the patch, or the eave shadow
+  under it, and the fill inherits it and goes dark -- and grain should be
+  synthesised to match amplitude rather than borrowed from a neighbouring patch,
+  which can ghost a road marking into the fill.
+- **Do not reconstruct ground.** Kerbs, markings and parked cars carry structure
+  that cannot be extrapolated honestly. Crop so the frame lands on real pixels
+  instead, or re-capture.
 
 Originals for each pair live in `sources/<slug>/`. See the repo README for the
 steps to add a new one.
