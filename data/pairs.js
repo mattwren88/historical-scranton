@@ -97,6 +97,18 @@ window.SCRANTON_PAIRS = {
       "then": { "year": "1950s", "sort": 1955 },
       "now":  { "year": "Today", "sort": null },
       "blurb": "Radler's and the Purple Cow are lettered across the ground floor. Both were gone by 1965; the building wasn't."
+    },
+    {
+      "slug": "dickson-manufacturing",
+      "title": "Dickson Manufacturing Co.",
+      "shortTitle": "Dickson Works",
+      "location": "Penn Avenue at Vine Street",
+      "neighborhood": "Central City",
+      "coords": [41.41303906200862, -75.66203107680582],
+      "streetview": "https://www.google.com/maps/@41.4127004,-75.6617426,3a,38.5y,340.95h,94.48t/data=!3m7!1e1!3m5!1skWqmUTpGLohCwbgsrUoNcg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-4.483780200034431%26panoid%3DkWqmUTpGLohCwbgsrUoNcg%26yaw%3D340.9470089472848!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+      "then": { "year": "c. 1895", "sort": 1895 },
+      "now":  { "year": "Today",   "sort": null },
+      "blurb": "The works turned out a hundred locomotives a year. The tower still stands, shorn of its spire, over a paper warehouse."
     }
   ]
 };
