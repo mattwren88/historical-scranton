@@ -93,6 +93,8 @@ crop and the HTML. The point-picking stays manual — that's the part that needs
 | `providence-auditorium` | `pairs/providence-auditorium.html` | c. 1910 postcard | Street View | **perspective-corrected**; four building corners match |
 | `scranton-dry-goods` | `pairs/scranton-dry-goods.html` | 1920s glass plate | Street View | **perspective-corrected**; six points agree within 2% |
 | `wyoming-ave` | `pairs/wyoming-ave.html` | mid-century linen card | Street View | straight crop; churches match, background tower ~3% off |
+| `dickson-manufacturing` | `pairs/dickson-manufacturing.html` | c. 1895 photograph | Street View | straight crop, scaled 0.847 on the surviving tower; check point within 0.4% |
+| `lackawanna-ave-bridge` | `pairs/lackawanna-ave-bridge.html` | c. 1910 photograph | Street View | frames arrived pre-matched; crop only, no scaling; both halves upscaled 3.6x |
 
 **A full perspective correction is often too much.** `scranton-dry-goods`
 shipped with a homography that matched six points to within 2% — and looked
@@ -196,6 +198,14 @@ panel, the compass and the attribution bar. Cropping to align usually throws the
 outside the frame; where it doesn't, patch them before finalising — the panel on
 `providence-auditorium` sat wholly on sky, so a 20px column of clean sky stretched
 across the area removed it without a trace. Leave the `© Google` watermark alone.
+
+`dickson-manufacturing` needed the same treatment for the search box and the
+address panel, both of which sat on clear sky. It also turned up a limit worth
+knowing: the watermark sits at the bottom of the *browser viewport*, so on a
+very wide capture it can fall outside the aligned crop entirely, and nothing
+short of breaking the registration brings it back. Capture in a window whose
+proportions are closer to 2048x1271 and it survives the crop. Where it does
+not, the page credit carries the attribution instead.
 
 Originals for each pair live in `sources/<slug>/`. See the repo README for the
 steps to add a new one.
