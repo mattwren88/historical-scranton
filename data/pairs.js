@@ -109,6 +109,18 @@ window.SCRANTON_PAIRS = {
       "then": { "year": "c. 1895", "sort": 1895 },
       "now":  { "year": "Today",   "sort": null },
       "blurb": "The works turned out a hundred locomotives a year. The tower still stands, shorn of its spire, over a paper warehouse."
+    },
+    {
+      "slug": "lackawanna-ave-bridge",
+      "title": "The Lackawanna Avenue Bridge",
+      "shortTitle": "Lackawanna Avenue Bridge",
+      "location": "Lackawanna Avenue at the river crossing",
+      "neighborhood": "Central City",
+      "coords": [41.41075177892645, -75.67136729335459],
+      "streetview": "https://www.google.com/maps/@41.4107163,-75.6713584,3a,42.9y,346.95h,89.4t/data=!3m8!1e1!3m6!1sXnyueuKyQJ79QvfvpYzMzQ!2e0!5s20201101T000000!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.6047702408824307%26panoid%3DXnyueuKyQJ79QvfvpYzMzQ%26yaw%3D346.9517200199852!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+      "then": { "year": "c. 1910", "sort": 1910 },
+      "now":  { "year": "Today",   "sort": null },
+      "blurb": "The Central Railroad of New Jersey station still stands at the far end. The bridge under it has been rebuilt, and the trolleys went with it."
     }
   ]
 };
