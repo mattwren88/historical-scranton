@@ -122,25 +122,12 @@
     return item;
   }
 
-  // The span of the series, not a count: the number of pairs will grow, the
-  // earliest and latest dates are what actually describe the collection.
-  function renderSpan(pairs) {
-    var el = document.getElementById('span');
-    if (!el) return;
-    var sorted = pairs
-      .map(function (p) { return p.then.sort; })
-      .filter(function (n) { return typeof n === 'number'; })
-      .sort(function (a, b) { return a - b; });
-    if (!sorted.length) return;
-    el.textContent = sorted[0] + ' – today';
-  }
 
   function renderLedger(grid, pairs) {
     var frag = document.createDocumentFragment();
     pairs.forEach(function (pair, i) { frag.appendChild(row(pair, i)); });
     grid.textContent = '';
     grid.appendChild(frag);
-    renderSpan(pairs);
   }
 
   function walkLink(label, pair, side) {

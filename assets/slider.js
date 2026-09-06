@@ -5,10 +5,9 @@
             so the seam lands exactly under the pointer and keyboard and
             screen-reader semantics come for free.
    Fade   — the same 0-100 value cross-dissolves the two plates.
-   Blink  — the slider steps aside; press and hold the Blink button to see
-            the historical view, release to snap back to today, so the
-            comparison is a quick swap between two complete images rather
-            than a blend of halves.
+   Blink  — the slider steps aside; clicking the plate swaps the two whole
+            views, so the comparison is between complete images rather than
+            halves.
 
    Position and mode live in custom properties and a data-mode attribute scoped
    to the .comparison element, so several can coexist on a page. */
@@ -28,7 +27,7 @@
     var readout  = comparison.querySelector('.readout');
     var hint     = comparison.querySelector('.hint__text');
     var buttons  = comparison.querySelectorAll('.mode');
-    var showThen = false;
+    var showThen = true;
 
     function mode() { return comparison.getAttribute('data-mode') || 'slide'; }
 
@@ -60,7 +59,7 @@
 
       if (hint) {
         hint.textContent = m === 'blink'
-          ? 'Press and hold Blink to see ' + label(then)
+          ? 'Click the plate to swap between the two whole views'
           : 'Drag anywhere on the plate · arrow keys to scrub';
       }
 
@@ -72,7 +71,6 @@
 
     function setMode(next) {
       comparison.setAttribute('data-mode', next);
-      showThen = false;
       Array.prototype.forEach.call(buttons, function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === next));
       });
@@ -98,35 +96,11 @@
       render();
     });
 
-    // Blink is a press-and-hold on its own button, not the plate: pressing
-    // shows the historical view, releasing snaps back to today.
-    var blinkBtn = comparison.querySelector('.mode[data-mode="blink"]');
-    if (blinkBtn) {
-      function press(e) {
-        if (e.pointerType === 'mouse' && e.button !== 0) return;
-        if (mode() !== 'blink') setMode('blink');
-        showThen = true;
+    if (stage) {
+      stage.addEventListener('click', function () {
+        if (mode() !== 'blink') return;
+        showThen = !showThen;
         render();
-      }
-      function release() {
-        if (mode() !== 'blink' || !showThen) return;
-        showThen = false;
-        render();
-      }
-      blinkBtn.addEventListener('pointerdown', press);
-      blinkBtn.addEventListener('pointerup', release);
-      blinkBtn.addEventListener('pointerleave', release);
-      blinkBtn.addEventListener('pointercancel', release);
-      // Keyboard: hold Space/Enter for the same press-and-hold behaviour.
-      blinkBtn.addEventListener('keydown', function (e) {
-        if (e.key !== ' ' && e.key !== 'Enter') return;
-        if (e.repeat) { e.preventDefault(); return; }
-        e.preventDefault();
-        press(e);
-      });
-      blinkBtn.addEventListener('keyup', function (e) {
-        if (e.key !== ' ' && e.key !== 'Enter') return;
-        release();
       });
     }
 

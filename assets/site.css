@@ -4,9 +4,22 @@
    ink text, gold applied as stroke. Change a token here and every page follows.
    ========================================================================== */
 
-/* Fonts loaded from Google Fonts. To vendor them locally instead, download
-   the woff2 files and replace this @import with local @font-face rules. */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Lora:wght@400;500;600&display=swap');
+/* Fonts are vendored locally below */
+@font-face{
+  font-family:'Cormorant Garamond';
+  font-style:normal;
+  font-weight:400 600;
+  font-display:swap;
+  src:url('cormorant-garamond.woff2') format('woff2');
+}
+
+@font-face{
+  font-family:'Lora';
+  font-style:normal;
+  font-weight:400 600;
+  font-display:swap;
+  src:url('lora.woff2') format('woff2');
+}
 
 
 :root{
@@ -109,6 +122,35 @@ a:hover{color:var(--accent)}
    Index — the series as a printed ledger
    ========================================================================== */
 
+/* ==========================================================================
+   The mark
+   ========================================================================== */
+
+.mark{
+  display:inline-flex;
+  align-items:center;
+  font-family:var(--display);
+  font-weight:400;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  line-height:1;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.mark__seam{
+  width:1px;
+  height:1.5em;
+  background:var(--accent);
+  flex:none;
+}
+.mark__then{padding-right:.45em}
+.mark__now{padding-left:.45em}
+
+.mark--display{font-size:clamp(1.7rem,5.6vw,2.75rem)}
+.mark--bar{font-size:1rem;letter-spacing:.09em}
+a.mark{text-decoration:none}
+a.mark:hover .mark__seam{background:var(--accent-700)}
+
 .masthead{
   display:flex;
   flex-wrap:wrap;
@@ -118,7 +160,7 @@ a:hover{color:var(--accent)}
   padding-bottom:var(--space-4);
   border-bottom:1px solid var(--ink);
 }
-.masthead .display{font-size:clamp(2.4rem,7vw,4rem)}
+
 .masthead__span{
   margin:0;
   text-align:right;
@@ -399,14 +441,13 @@ a:hover{color:var(--accent)}
 
 /* Blink: the slider steps aside and the plate swaps whole views on click. */
 .comparison[data-mode="blink"] .range{display:none}
-.comparison[data-mode="blink"] .stage{cursor:default}
-.comparison[data-mode="blink"] .mode[data-mode="blink"]{cursor:pointer;user-select:none;-webkit-user-select:none}
+.comparison[data-mode="blink"] .stage{cursor:pointer}
 .comparison[data-mode="blink"] .seam,
 .comparison[data-mode="blink"] .scale__rule{opacity:0}
 .comparison[data-mode="blink"] .plate--then{
   clip-path:inset(0);
-  opacity:var(--then-shown,0);
-  transition:opacity .08s ease-out;
+  opacity:var(--then-shown,1);
+  transition:opacity .28s ease;
 }
 .comparison[data-mode="fade"] .seam,
 .comparison[data-mode="fade"] .scale__tick{opacity:0}
