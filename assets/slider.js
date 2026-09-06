@@ -1,10 +1,17 @@
-/* Then & Now comparison slider.
-   Wires every .comparison block on the page, so a pair page is pure markup.
+/* Then & Now comparison, in three modes.
 
-   The control is a real <input type="range"> stretched over the image: that
-   buys native pointer dragging, native keyboard handling and correct
-   screen-reader semantics for free. The seam position lives in a --pos custom
-   property scoped to the .comparison element, so several can coexist. */
+   Slide  — the historical plate is clipped to a seam that follows the cursor.
+            The control is a real <input type="range"> stretched over the plate,
+            so the seam lands exactly under the pointer and keyboard and
+            screen-reader semantics come for free.
+   Fade   — the same 0-100 value cross-dissolves the two plates.
+   Blink  — the slider steps aside; press and hold the Blink button to see
+            the historical view, release to snap back to today, so the
+            comparison is a quick swap between two complete images rather
+            than a blend of halves.
+
+   Position and mode live in custom properties and a data-mode attribute scoped
+   to the .comparison element, so several can coexist on a page. */
 (function () {
   'use strict';
 
@@ -15,32 +22,68 @@
     var range = comparison.querySelector('.range');
     if (!range) return;
 
-    var wrap = comparison.querySelector('.stage-wrap');
-    var then = comparison.querySelector('.yr--then');
-    var now  = comparison.querySelector('.yr--now');
+    var stage    = comparison.querySelector('.stage');
+    var then     = comparison.querySelector('.yr--then');
+    var now      = comparison.querySelector('.yr--now');
+    var readout  = comparison.querySelector('.readout');
+    var hint     = comparison.querySelector('.hint__text');
+    var buttons  = comparison.querySelectorAll('.mode');
+    var showThen = false;
 
-    function render(v) {
+    function mode() { return comparison.getAttribute('data-mode') || 'slide'; }
+
+    function label(el) { return el ? el.textContent.trim() : ''; }
+
+    function render() {
+      var v = parseFloat(range.value);
+      var m = mode();
+
       comparison.style.setProperty('--pos', v + '%');
-      // Each year dims as its own half is squeezed out of the frame.
-      comparison.style.setProperty('--then-weight', (0.4 + 0.6 * (v / 100)).toFixed(3));
-      comparison.style.setProperty('--now-weight',  (0.4 + 0.6 * (1 - v / 100)).toFixed(3));
+      comparison.style.setProperty('--fade', (v / 100).toFixed(3));
+      comparison.style.setProperty('--then-shown', showThen ? 1 : 0);
 
-      if (then && now) {
-        var pct = Math.round(v);
-        range.setAttribute('aria-valuetext',
-          pct + '% ' + then.textContent.trim() + ', ' +
-          (100 - pct) + '% ' + now.textContent.trim());
+      if (m === 'blink') {
+        comparison.style.setProperty('--then-weight', showThen ? 1 : 0.35);
+        comparison.style.setProperty('--now-weight', showThen ? 0.35 : 1);
+      } else {
+        // Each year dims as its own half is squeezed out of the frame.
+        comparison.style.setProperty('--then-weight', (0.35 + 0.65 * (v / 100)).toFixed(3));
+        comparison.style.setProperty('--now-weight', (0.35 + 0.65 * (1 - v / 100)).toFixed(3));
       }
+
+      if (readout) {
+        readout.textContent =
+          m === 'blink' ? (showThen ? label(then) + ', whole' : label(now) + ', whole')
+        : m === 'fade'  ? Math.round(v) + '% ' + label(then)
+        :                 Math.round(v) + '% revealed';
+      }
+
+      if (hint) {
+        hint.textContent = m === 'blink'
+          ? 'Press and hold Blink to see ' + label(then)
+          : 'Drag anywhere on the plate · arrow keys to scrub';
+      }
+
+      range.setAttribute('aria-valuetext',
+        m === 'blink' ? (showThen ? label(then) : label(now))
+                      : Math.round(v) + '% ' + label(then) + ', ' +
+                        (100 - Math.round(v)) + '% ' + label(now));
     }
 
-    function touched() {
-      if (wrap) wrap.classList.add('touched');
+    function setMode(next) {
+      comparison.setAttribute('data-mode', next);
+      showThen = false;
+      Array.prototype.forEach.call(buttons, function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === next));
+      });
+      render();
     }
 
-    range.addEventListener('input', function () {
-      touched();
-      render(parseFloat(range.value));
+    Array.prototype.forEach.call(buttons, function (b) {
+      b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); });
     });
+
+    range.addEventListener('input', render);
 
     // The 0.1 step exists so dragging is smooth; that makes the native arrow
     // key increment far too small, so take the keys over and move a useful
@@ -50,15 +93,44 @@
               : (e.key === 'ArrowRight' || e.key === 'ArrowUp')   ?  1 : 0;
       if (!dir) return;
       e.preventDefault();
-
       var step = e.shiftKey ? SHIFT_STEP : ARROW_STEP;
-      var next = Math.min(100, Math.max(0, parseFloat(range.value) + dir * step));
-      range.value = next;
-      touched();
-      render(next);
+      range.value = Math.min(100, Math.max(0, parseFloat(range.value) + dir * step));
+      render();
     });
 
-    render(parseFloat(range.value));
+    // Blink is a press-and-hold on its own button, not the plate: pressing
+    // shows the historical view, releasing snaps back to today.
+    var blinkBtn = comparison.querySelector('.mode[data-mode="blink"]');
+    if (blinkBtn) {
+      function press(e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        if (mode() !== 'blink') setMode('blink');
+        showThen = true;
+        render();
+      }
+      function release() {
+        if (mode() !== 'blink' || !showThen) return;
+        showThen = false;
+        render();
+      }
+      blinkBtn.addEventListener('pointerdown', press);
+      blinkBtn.addEventListener('pointerup', release);
+      blinkBtn.addEventListener('pointerleave', release);
+      blinkBtn.addEventListener('pointercancel', release);
+      // Keyboard: hold Space/Enter for the same press-and-hold behaviour.
+      blinkBtn.addEventListener('keydown', function (e) {
+        if (e.key !== ' ' && e.key !== 'Enter') return;
+        if (e.repeat) { e.preventDefault(); return; }
+        e.preventDefault();
+        press(e);
+      });
+      blinkBtn.addEventListener('keyup', function (e) {
+        if (e.key !== ' ' && e.key !== 'Enter') return;
+        release();
+      });
+    }
+
+    setMode(mode());
   }
 
   function boot() {

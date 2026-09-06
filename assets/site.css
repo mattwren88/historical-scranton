@@ -1,52 +1,44 @@
 /* ==========================================================================
    Historical Scranton — Then & Now
-   One stylesheet for the whole series. Change a token here and every page
-   in the series follows.
+   One stylesheet for the whole series, on the Classical tokens: a paper ground,
+   ink text, gold applied as stroke. Change a token here and every page follows.
    ========================================================================== */
 
-@font-face{
-  font-family:'Bodoni Moda';
-  font-style:normal;
-  font-weight:400 900;
-  font-display:swap;
-  src:url('fonts/bodoni-moda.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Inter';
-  font-style:normal;
-  font-weight:100 900;
-  font-display:swap;
-  src:url('fonts/inter.woff2') format('woff2');
-}
+/* Fonts loaded from Google Fonts. To vendor them locally instead, download
+   the woff2 files and replace this @import with local @font-face rules. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Lora:wght@400;500;600&display=swap');
+
 
 :root{
-  --ink:#2a3430;
-  --card:#f3efe4;
-  --rule:#cbc3af;
-  /* Focus ring. The system's #3f7d78 held 3.37:1 against the old near-black
-     ground; on this lighter one it drops to 2.71:1, under the 3:1 that WCAG 2.2
-     asks of a focus indicator. Lifted just enough to restore the original
-     relationship at 3.34:1 — same teal, same margin as the design had. */
-  --teal:#4a8d87;
-  --clay:#a8503c;
-  /* Secondary text. The design system's original #6d6a5e sat at 2.96:1 on the
-     old near-black ground and 2.47:1 on this one — under AA for body copy, and
-     it carries the standfirsts and captions. This is ~55% --card mixed into
-     --ink, so it stays on-palette and clears AA at 4.57:1. */
-  --muted:#999b93;
+  --bg:#f3f2f2;
+  --surface:#eae9e9;
+  --ink:#201f1d;
+  --accent:#b68235;
+  --accent-100:#fff3e4;
+  --accent-700:#7d5411;
+  --n-200:#eae7e7;
+  --n-400:#bab6b6;
+  --n-500:#9b9797;
+  --n-600:#7d7979;
+  --n-700:#605d5d;
+  --rule:color-mix(in srgb, #201f1d 16%, transparent);
 
-  /* Sits behind an image while it loads, so it stays below the page ground. */
-  --well:#1d2422;
+  --display:"Cormorant Garamond",Georgia,'Times New Roman',serif;
+  --body:"Lora",Georgia,'Times New Roman',serif;
 
-  /* Seam position, 0–100%. Written by slider.js. */
-  --pos:50%;
-
-  --display:"Bodoni Moda",'Didot','Bodoni MT',Georgia,'Times New Roman',serif;
-  --body:"Inter",-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --space-2:9.2px;
+  --space-3:13.8px;
+  --space-4:18.4px;
+  --space-6:27.6px;
+  --space-8:36.8px;
+  --radius:4px;
 
   --frame:1180px;
   --gutter:clamp(20px,5vw,44px);
   --plate:2048/1271;   /* every aligned pair is cut to this ratio */
+  --mat:6px;           /* the plate mat; the seam rail is inset by it */
+
+  --pos:50%;           /* seam position, 0-100%. Written by slider.js. */
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -54,11 +46,11 @@ html{-webkit-text-size-adjust:100%}
 
 body{
   margin:0;
-  background:var(--ink);
-  color:var(--card);
+  background:var(--bg);
+  color:var(--ink);
   font-family:var(--body);
-  font-size:16px;
-  line-height:1.55;
+  font-size:15px;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -69,105 +61,105 @@ body{
   padding:clamp(32px,5vh,60px) var(--gutter) clamp(44px,7vh,80px);
 }
 
-a{color:inherit}
+a{color:var(--accent-700)}
+a:hover{color:var(--accent)}
 
-/* --- Shared type ---------------------------------------------------------- */
-
-.eyebrow{
-  margin:0 0 clamp(16px,2.4vh,22px);
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--muted);
+:where(a,button,summary):focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  border-radius:2px;
 }
 
 .display{
   margin:0;
   font-family:var(--display);
-  font-weight:500;
+  font-weight:400;
   line-height:1.02;
-  letter-spacing:-.012em;
-  color:var(--card);
+  letter-spacing:-.02em;
 }
 
-.standfirst{
-  margin:clamp(15px,2.2vh,20px) 0 clamp(26px,4vh,38px);
-  max-width:56ch;
-  font-size:clamp(14px,1.6vw,16px);
-  line-height:1.65;
-  color:var(--muted);
+.eyebrow{
+  margin:0 0 var(--space-2);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent-700);
 }
 
-/* Keyboard focus, used everywhere a link or control can take it. */
-:where(a,button,summary):focus-visible{
-  outline:2px solid var(--teal);
-  outline-offset:3px;
-  border-radius:2px;
+/* A photograph is matted like a tipped-in plate. */
+.plate{
+  border:var(--mat) solid var(--surface);
+  outline:1px solid var(--rule);
+  filter:sepia(.22) saturate(.82) contrast(1.05);
 }
+
+.icon{
+  flex:none;
+  width:13px;
+  height:13px;
+  stroke:currentColor;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+.icon--gold{color:var(--accent)}
 
 /* ==========================================================================
-   Index — the grid of pairs
+   Index — the series as a printed ledger
    ========================================================================== */
 
 .masthead{
   display:flex;
   flex-wrap:wrap;
-  align-items:baseline;
+  align-items:flex-end;
   justify-content:space-between;
-  gap:12px clamp(24px,5vw,48px);
-  padding-bottom:18px;
-  border-bottom:1px solid rgba(203,195,175,.26);
+  gap:12px var(--space-8);
+  padding-bottom:var(--space-4);
+  border-bottom:1px solid var(--ink);
 }
-.masthead .display{font-size:clamp(2.1rem,6.2vw,3.6rem)}
-
-.count{
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--muted);
-  white-space:nowrap;
+.masthead .display{font-size:clamp(2.4rem,7vw,4rem)}
+.masthead__span{
+  margin:0;
+  text-align:right;
+  font-size:12px;
+  line-height:1.5;
+  color:var(--n-700);
+  font-feature-settings:'tnum';
 }
 
 .intro{
-  margin:clamp(20px,3vh,28px) 0 clamp(30px,5vh,44px);
-  max-width:58ch;
-  font-size:clamp(14px,1.6vw,16px);
-  line-height:1.65;
-  color:var(--muted);
+  margin:var(--space-6) 0 var(--space-8);
+  max-width:62ch;
+  font-size:15px;
+  line-height:1.7;
+  text-align:justify;
+  hyphens:auto;
 }
 
-/* Two up on phones, three from tablet width. auto-fill can't serve both: one
-   min-width that gives two columns at 390px gives six at 1180px. */
-.grid{
+.ledger{list-style:none;margin:0;padding:0}
+
+.row{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(24px,3.4vw,40px) clamp(14px,2.4vw,28px);
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-@media (min-width:620px){
-  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-
-.card{
-  display:block;
+  grid-template-columns:272px minmax(0,1fr) 104px 18px;
+  gap:var(--space-6) 22px;
+  align-items:start;
+  padding:var(--space-4) 0;
+  border-bottom:1px solid var(--rule);
   text-decoration:none;
   color:inherit;
 }
+.row:focus-visible{outline:none}
+.row:focus-visible .row__frame{outline:2px solid var(--accent);outline-offset:3px}
 
-/* The two plates stack; the historical one is revealed on hover/focus, so the
-   grid rehearses the gesture the pair pages are built on. */
-.card__frame{
+.row__frame{
   position:relative;
+  display:block;
   aspect-ratio:var(--plate);
   overflow:hidden;
-  background:var(--well);
-  border:1px solid rgba(203,195,175,.26);
+  background:var(--n-200);
 }
-.card__frame img{
+.row__frame img{
   position:absolute;
   inset:0;
   width:100%;
@@ -175,57 +167,77 @@ a{color:inherit}
   object-fit:cover;
   display:block;
 }
-.card__then{
-  opacity:0;
-  transition:opacity .45s cubic-bezier(.4,0,.2,1);
-}
-@media (hover:hover){
-  .card:hover .card__then{opacity:1}
-}
-.card:focus-visible .card__then{opacity:1}
+/* The historical plate is revealed on hover, so the ledger rehearses the
+   gesture the pair pages are built on. */
+.row__then{opacity:0;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
+@media (hover:hover){.row:hover .row__then{opacity:1}}
+.row:focus-visible .row__then{opacity:1}
 
-.card:focus-visible{outline:none}
-.card:focus-visible .card__frame{
-  outline:2px solid var(--teal);
-  outline-offset:3px;
-}
-
-.card__title{
-  margin:12px 0 0;
-  font-family:var(--display);
-  font-weight:500;
-  font-size:clamp(1.02rem,2.6vw,1.4rem);
-  line-height:1.2;
-  letter-spacing:-.006em;
-}
-
-.card__meta{
-  margin:5px 0 0;
-  font-size:clamp(11px,2.2vw,12px);
-  line-height:1.5;
-  color:var(--muted);
-}
-.card__years{
-  display:block;
-  margin-top:3px;
-  font-size:11px;
-  font-weight:500;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--rule);
-  opacity:.7;
-}
-
-/* Shown only if the manifest can't be read. */
-.grid-error{
+.row__title{
   margin:0;
-  padding:20px 0;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:25px;
+  line-height:1.15;
+  letter-spacing:-.015em;
+}
+.row__where{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:4px 0 0;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--accent-700);
+}
+.row__blurb{
+  margin:10px 0 0;
+  max-width:52ch;
   font-size:14px;
-  color:var(--clay);
+  line-height:1.6;
+  color:var(--n-700);
+}
+.row__years{
+  margin:0;
+  text-align:right;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--n-700);
+  font-feature-settings:'tnum';
+}
+.row__to{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:6px;
+  margin-top:2px;
+  color:var(--n-700);
+}
+.row__mark{
+  display:flex;
+  justify-content:flex-end;
+  padding-top:5px;
+  color:var(--accent);
+  opacity:0;
+  transform:translateX(-5px);
+  transition:opacity .25s ease,transform .25s ease;
+}
+@media (hover:hover){.row:hover .row__mark{opacity:1;transform:none}}
+.row:focus-visible .row__mark{opacity:1;transform:none}
+
+.grid-error{margin:0;padding:20px 0;font-size:14px;color:var(--accent-700)}
+
+.sitefoot{
+  margin-top:var(--space-8);
+  padding-top:var(--space-4);
+  border-top:1px solid var(--rule);
+  font-size:12px;
+  color:var(--n-700);
 }
 
 /* ==========================================================================
-   Pair page
+   Pair page — plate at three fifths, text in a sidecar
    ========================================================================== */
 
 .topbar{
@@ -233,65 +245,29 @@ a{color:inherit}
   align-items:baseline;
   justify-content:space-between;
   gap:16px;
-  margin-bottom:clamp(22px,3.4vh,32px);
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(203,195,175,.26);
+  margin-bottom:var(--space-6);
+  padding-bottom:var(--space-3);
+  border-bottom:1px solid var(--rule);
   font-size:11px;
-  font-weight:500;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-.topbar a{color:var(--muted);text-decoration:none;transition:color .16s ease}
-.topbar a:hover{color:var(--card)}
-.topbar__position{color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
-
-.pair-title{font-size:clamp(2.1rem,6.2vw,3.6rem)}
-
-/* --- The scale: years at the ends, a clay tick that tracks the seam ------- */
-
-.scale{margin-bottom:14px}
-.scale__labels{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  margin-bottom:9px;
-}
-.yr{
-  font-size:clamp(11px,1.3vw,12px);
-  font-weight:500;
   letter-spacing:.16em;
   text-transform:uppercase;
-  color:var(--card);
-  white-space:nowrap;
-  transition:opacity .18s ease;
 }
-.yr--then{opacity:var(--then-weight,1)}
-.yr--now{opacity:var(--now-weight,1)}
+.topbar a{text-decoration:none}
+.topbar__series{color:var(--n-700)}
 
-.scale__rule{
-  position:relative;
-  height:1px;
-  background:var(--rule);
-  opacity:.55;
+.pair{
+  display:grid;
+  grid-template-columns:3fr 2fr;
+  gap:var(--space-8);
+  align-items:start;
 }
-.scale__tick{
-  position:absolute;
-  top:-6px;
-  left:var(--pos);
-  width:1px;
-  height:13px;
-  background:var(--clay);
-  transform:translateX(-.5px);
-}
-
-/* --- The stage ----------------------------------------------------------- */
 
 .stage{
   position:relative;
   aspect-ratio:var(--plate);
   overflow:hidden;
-  background:var(--well);
-  border:1px solid rgba(203,195,175,.26);
+  background:var(--n-200);
+  cursor:ew-resize;
   user-select:none;
   -webkit-user-select:none;
   touch-action:pan-y;
@@ -306,12 +282,8 @@ a{color:inherit}
   pointer-events:none;
   -webkit-user-drag:none;
 }
-
-/* The historical plate sits on top, revealed from the left edge to the seam. */
-.plate--then{
-  z-index:2;
-  clip-path:inset(0 calc(100% - var(--pos)) 0 0);
-}
+/* The historical plate sits on top, clipped to the seam. */
+.plate--then{z-index:2;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 
 .seam{
   position:absolute;
@@ -319,14 +291,16 @@ a{color:inherit}
   bottom:0;
   left:var(--pos);
   width:1px;
-  background:var(--card);
+  background:var(--accent-100);
+  box-shadow:0 0 0 1px color-mix(in srgb, #201f1d 28%, transparent);
   transform:translateX(-.5px);
   z-index:3;
   pointer-events:none;
 }
 
-/* A real range input drives everything: native pointer drag, native keyboard,
-   native screen-reader semantics. Transparent, covering the whole stage. */
+/* A real range input drives the seam: native pointer drag, native keyboard,
+   native screen-reader semantics — stretched over the plate so the seam lands
+   exactly under the cursor. */
 .range{
   position:absolute;
   inset:0;
@@ -338,6 +312,7 @@ a{color:inherit}
   border:0;
   appearance:none;
   -webkit-appearance:none;
+  accent-color:transparent;
   cursor:ew-resize;
   z-index:5;
 }
@@ -346,134 +321,172 @@ a{color:inherit}
   -webkit-appearance:none;
   appearance:none;
   width:2px;height:100%;
-  background:transparent;border:0;
-  cursor:ew-resize;
+  background:transparent;border:0;box-shadow:none;
 }
-.range::-moz-range-thumb{
-  width:2px;height:100%;
-  background:transparent;border:0;border-radius:0;
-  cursor:ew-resize;
-}
+.range::-webkit-slider-runnable-track{background:transparent;border:0}
+.range::-moz-range-thumb{width:2px;height:100%;background:transparent;border:0;border-radius:0}
 .range::-moz-range-track{background:transparent;border:0}
+.range:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 
-.grip{
-  position:absolute;
-  top:50%;
-  left:var(--pos);
-  transform:translate(-50%,-50%);
+/* Years and the tick rail, inset by the mat so the tick sits under the seam. */
+.scale{padding:0 var(--mat)}
+.scale__labels{
   display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  margin-top:10px;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-feature-settings:'tnum';
+}
+.yr{transition:opacity .18s ease}
+.yr--then{opacity:var(--then-weight,1)}
+.yr--now{opacity:var(--now-weight,1)}
+.readout{color:var(--n-700)}
+
+.scale__rule{
+  position:relative;
+  height:1px;
+  margin-top:7px;
+  background:var(--n-400);
+  transition:opacity .2s ease;
+}
+.scale__tick{
+  position:absolute;
+  top:-5px;
+  left:var(--pos);
+  width:1px;
+  height:11px;
+  background:var(--accent);
+  transform:translateX(-.5px);
+}
+
+.modes{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}
+.mode{
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:3px;
-  width:16px;
-  height:clamp(58px,9vw,84px);
-  border-radius:8px;
-  background:var(--card);
-  box-shadow:0 1px 3px rgba(0,0,0,.5),0 6px 22px rgba(0,0,0,.42);
-  pointer-events:none;
-  z-index:6;
+  gap:7px;
+  min-height:44px;
+  padding:7px 15px;
+  appearance:none;
+  background:transparent;
+  border:1px solid var(--rule);
+  border-radius:var(--radius);
+  font-family:var(--body);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--n-700);
+  cursor:pointer;
+  transition:border-color .16s ease,color .16s ease,background .16s ease;
 }
-.grip::before,.grip::after{
-  content:"";
-  width:1px;height:38%;
-  background:var(--ink);
-  opacity:.45;
-}
-.range:focus-visible ~ .grip{
-  box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--teal),0 6px 22px rgba(0,0,0,.42);
-}
+.mode:hover{background:color-mix(in srgb, var(--accent) 8%, transparent);color:var(--accent-700)}
+.mode:active{border-color:var(--accent-700);color:var(--accent-700)}
+.mode[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-700)}
 
 .hint{
-  margin:12px 0 0;
-  font-size:11px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--muted);
-  transition:opacity .4s ease;
-}
-.stage-wrap.touched .hint{opacity:0}
-
-/* --- Walk the series ------------------------------------------------------ */
-
-/* Nothing to walk to yet — don't draw a rule across an empty band. */
-.walk:empty{display:none}
-
-.walk{
   display:flex;
-  flex-wrap:wrap;
-  gap:16px clamp(24px,5vw,48px);
-  justify-content:space-between;
-  margin-top:clamp(28px,4.5vh,42px);
-  padding-top:18px;
-  border-top:1px solid rgba(203,195,175,.26);
-}
-.walk a{
-  max-width:22ch;
-  text-decoration:none;
-  color:var(--muted);
-  transition:color .16s ease;
-}
-.walk a:hover{color:var(--card)}
-.walk__next{text-align:right;margin-left:auto}
-.walk b{
-  display:block;
-  font-weight:500;
-  font-size:10px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--rule);
-  opacity:.7;
-  margin-bottom:3px;
-}
-.walk span{
-  font-family:var(--display);
-  font-size:clamp(1rem,1.9vw,1.2rem);
-  line-height:1.2;
+  align-items:center;
+  gap:7px;
+  margin:10px 0 0;
+  font-size:11px;
+  line-height:1.6;
+  color:var(--n-700);
 }
 
-/* --- Credits -------------------------------------------------------------- */
+/* Blink: the slider steps aside and the plate swaps whole views on click. */
+.comparison[data-mode="blink"] .range{display:none}
+.comparison[data-mode="blink"] .stage{cursor:default}
+.comparison[data-mode="blink"] .mode[data-mode="blink"]{cursor:pointer;user-select:none;-webkit-user-select:none}
+.comparison[data-mode="blink"] .seam,
+.comparison[data-mode="blink"] .scale__rule{opacity:0}
+.comparison[data-mode="blink"] .plate--then{
+  clip-path:inset(0);
+  opacity:var(--then-shown,0);
+  transition:opacity .08s ease-out;
+}
+.comparison[data-mode="fade"] .seam,
+.comparison[data-mode="fade"] .scale__tick{opacity:0}
+.comparison[data-mode="fade"] .plate--then{
+  clip-path:inset(0);
+  opacity:var(--fade,1);
+}
+
+.sidecar .pair-title{font-size:clamp(1.9rem,3.4vw,2.4rem)}
+.sidecar .standfirst{
+  margin:var(--space-4) 0 0;
+  font-size:14px;
+  line-height:1.75;
+  text-align:justify;
+  hyphens:auto;
+}
+.where{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin:8px 0 0;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--n-700);
+}
 
 .credits{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px clamp(24px,5vw,64px);
-  margin-top:clamp(26px,4vh,38px);
-  padding-top:16px;
-  border-top:1px solid rgba(203,195,175,.26);
+  width:100%;
+  border-collapse:collapse;
+  margin-top:var(--space-6);
   font-size:12px;
-  line-height:1.6;
-  color:var(--muted);
 }
-.credits p{margin:0;max-width:42ch}
-.credits a{
-  color:var(--muted);
-  text-decoration:underline;
-  text-decoration-thickness:1px;
-  text-underline-offset:3px;
-  transition:color .16s ease;
-}
-.credits a:hover{color:var(--card)}
-
-.credits b{
-  display:block;
-  font-weight:500;
+.credits th{
+  width:86px;
+  padding:10px 0;
+  border-top:1px solid var(--rule);
+  text-align:left;
+  vertical-align:top;
+  font-family:var(--body);
+  font-weight:400;
   font-size:10px;
-  letter-spacing:.18em;
+  letter-spacing:.12em;
   text-transform:uppercase;
-  color:var(--rule);
-  opacity:.75;
+  color:var(--accent-700);
+}
+.credits th span{display:inline-flex;align-items:center;gap:6px}
+.credits td{
+  padding:10px 0;
+  border-top:1px solid var(--rule);
+  line-height:1.6;
+  color:var(--n-700);
+}
+.credits tr:last-child th,.credits tr:last-child td{border-bottom:1px solid var(--rule)}
+.credits td a{text-decoration:underline;text-underline-offset:3px}
+
+.walk:empty{display:none}
+.walk{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-2);
+  margin:var(--space-4) 0 0;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.walk a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.walk__prev .icon{order:-1}
+
+@media (max-width:860px){
+  .pair{grid-template-columns:minmax(0,1fr);gap:var(--space-6)}
+  .row{grid-template-columns:minmax(0,1fr);gap:0}
+  .row__years{text-align:left;margin-top:10px}
+  .row__to{justify-content:flex-start}
+  .row__mark{display:none}
+  .modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .mode{padding:7px 8px;font-size:10px;letter-spacing:.1em}
+  .masthead__span{text-align:left}
 }
 
-.sitefoot{
-  margin-top:clamp(30px,5vh,48px);
-  padding-top:16px;
-  border-top:1px solid rgba(203,195,175,.26);
-  font-size:12px;
-  color:var(--muted);
-}
-.sitefoot a{text-decoration:underline;text-underline-offset:2px}
-
-/* The card swap is user-initiated, so it survives here; it just stops animating. */
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:.001ms !important;animation-duration:.001ms !important}
 }

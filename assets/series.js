@@ -1,5 +1,5 @@
 /* Builds whatever the current page needs out of the manifest in data/pairs.js:
-   the card grid on the index, and the position readout plus prev/next links on
+   the ledger rows on the index, and the "Where" credit plus prev/next links on
    a pair page. One manifest is the single source of truth, so adding a pair
    never means editing a neighbouring page.
 
@@ -13,24 +13,56 @@
 
   var ROOT = document.documentElement.getAttribute('data-root') || '';
 
+  var ICONS = {
+    swap: 'M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4',
+    pin: 'M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z',
+    chevron: 'M9 18l6-6-6-6',
+    chevronLeft: 'M15 18l-6-6 6-6'
+  };
+
   function url(path) { return ROOT + path; }
   function pageFor(slug) { return url('pairs/' + slug + '.html'); }
 
+  // Icons are drawn here rather than shipped as markup so a row stays one
+  // <a> built in one place. Lucide geometry, stroked in currentColor.
+  function icon(name, gold) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'icon' + (gold ? ' icon--gold' : ''));
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', ICONS[name]);
+    svg.appendChild(path);
+    if (name === 'pin') {
+      var dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('cx', '12'); dot.setAttribute('cy', '10'); dot.setAttribute('r', '3');
+      svg.appendChild(dot);
+    }
+    return svg;
+  }
+
+  function span(className, text) {
+    var el = document.createElement('span');
+    if (className) el.className = className;
+    if (text) el.textContent = text;
+    return el;
+  }
+
   function thumb(pair, half) {
     var img = new Image(640, 397);
-    img.className = 'card__' + half;
+    img.className = 'row__' + half;
     img.src = url('images/' + pair.slug + '/thumb-' + half + '.jpg');
     img.decoding = 'async';
     return img;
   }
 
-  function card(pair, index) {
+  function row(pair, index) {
     var link = document.createElement('a');
-    link.className = 'card';
+    link.className = 'row';
     link.href = pageFor(pair.slug);
 
-    var frame = document.createElement('div');
-    frame.className = 'card__frame';
+    var frame = span('row__frame plate');
 
     var now = thumb(pair, 'now');
     now.alt = pair.title + ', today';
@@ -41,47 +73,74 @@
     then.alt = '';
     then.setAttribute('aria-hidden', 'true');
 
-    // Roughly the first row is above the fold; everything after can wait.
-    if (index >= 3) {
-      now.loading = 'lazy';
-      then.loading = 'lazy';
-    }
+    // Roughly the first two rows are above the fold; everything after can wait.
+    if (index >= 2) { now.loading = 'lazy'; then.loading = 'lazy'; }
 
     frame.appendChild(now);
     frame.appendChild(then);
 
+    var body = document.createElement('div');
+
     var title = document.createElement('h2');
-    title.className = 'card__title';
+    title.className = 'row__title';
     title.textContent = pair.shortTitle || pair.title;
+    body.appendChild(title);
 
-    var meta = document.createElement('p');
-    meta.className = 'card__meta';
-    meta.textContent = pair.location || '';
+    if (pair.location) {
+      var where = document.createElement('p');
+      where.className = 'row__where';
+      where.appendChild(icon('pin'));
+      where.appendChild(document.createTextNode(pair.location));
+      body.appendChild(where);
+    }
 
-    var years = document.createElement('span');
-    years.className = 'card__years';
-    years.textContent = pair.then.year + ' → ' + pair.now.year;
-    meta.appendChild(years);
+    if (pair.blurb) {
+      var blurb = document.createElement('p');
+      blurb.className = 'row__blurb';
+      blurb.textContent = pair.blurb;
+      body.appendChild(blurb);
+    }
+
+    var years = document.createElement('p');
+    years.className = 'row__years';
+    years.appendChild(document.createTextNode(pair.then.year));
+    var to = span('row__to');
+    to.appendChild(icon('swap', true));
+    to.appendChild(document.createTextNode(pair.now.year.toLowerCase()));
+    years.appendChild(to);
+
+    var mark = span('row__mark');
+    mark.appendChild(icon('chevron'));
 
     link.appendChild(frame);
-    link.appendChild(title);
-    link.appendChild(meta);
+    link.appendChild(body);
+    link.appendChild(years);
+    link.appendChild(mark);
 
     var item = document.createElement('li');
     item.appendChild(link);
     return item;
   }
 
-  function renderGrid(grid, pairs) {
+  // The span of the series, not a count: the number of pairs will grow, the
+  // earliest and latest dates are what actually describe the collection.
+  function renderSpan(pairs) {
+    var el = document.getElementById('span');
+    if (!el) return;
+    var sorted = pairs
+      .map(function (p) { return p.then.sort; })
+      .filter(function (n) { return typeof n === 'number'; })
+      .sort(function (a, b) { return a - b; });
+    if (!sorted.length) return;
+    el.textContent = sorted[0] + ' – today';
+  }
+
+  function renderLedger(grid, pairs) {
     var frag = document.createDocumentFragment();
-    pairs.forEach(function (pair, i) { frag.appendChild(card(pair, i)); });
+    pairs.forEach(function (pair, i) { frag.appendChild(row(pair, i)); });
     grid.textContent = '';
     grid.appendChild(frag);
-
-    var count = document.getElementById('count');
-    if (count) {
-      count.textContent = pairs.length + (pairs.length === 1 ? ' view' : ' views');
-    }
+    renderSpan(pairs);
   }
 
   function walkLink(label, pair, side) {
@@ -89,15 +148,9 @@
     link.className = 'walk__' + side;
     link.href = pageFor(pair.slug);
     link.setAttribute('rel', side === 'prev' ? 'prev' : 'next');
-
-    var tag = document.createElement('b');
-    tag.textContent = label;
-
-    var name = document.createElement('span');
-    name.textContent = pair.shortTitle || pair.title;
-
-    link.appendChild(tag);
-    link.appendChild(name);
+    link.appendChild(document.createTextNode(
+      (side === 'prev' ? 'Previous — ' : 'Next — ') + (pair.shortTitle || pair.title)));
+    link.appendChild(icon(side === 'prev' ? 'chevronLeft' : 'chevron', true));
     return link;
   }
 
@@ -116,36 +169,38 @@
     return a;
   }
 
-  // Appends a "Where" line to the credits block. Pairs without location data in
-  // the manifest simply don't get one.
+  // Adds a "Where" row to the credits table. Pairs without coordinates in the
+  // manifest simply don't get one.
   function renderWhere(pair) {
-    var credits = document.querySelector('.credits');
-    if (!credits || !pair.coords) return;
+    var body = document.querySelector('.credits tbody');
+    if (!body || !pair.coords) return;
 
     var lat = pair.coords[0], lon = pair.coords[1];
-    var line = document.createElement('p');
-    var tag = document.createElement('b');
-    tag.textContent = 'Where';
-    line.appendChild(tag);
+    var tr = document.createElement('tr');
+    var th = document.createElement('th');
+    th.setAttribute('scope', 'row');
+    var label = span(null, 'Where');
+    label.insertBefore(icon('pin', true), label.firstChild);
+    th.appendChild(label);
 
-    line.appendChild(mapLink(
+    var td = document.createElement('td');
+    td.appendChild(mapLink(
       'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lon,
       formatCoord(lat, 'N', 'S') + ', ' + formatCoord(lon, 'E', 'W')));
-
     if (pair.streetview) {
-      line.appendChild(document.createTextNode(' \u00b7 '));
-      line.appendChild(mapLink(pair.streetview, 'Street View'));
+      td.appendChild(document.createTextNode(' \u00b7 '));
+      td.appendChild(mapLink(pair.streetview, 'Street View'));
     }
-    credits.appendChild(line);
+
+    tr.appendChild(th);
+    tr.appendChild(td);
+    body.appendChild(tr);
   }
 
   function renderNav(slug, pairs) {
     var i = -1;
     pairs.forEach(function (p, n) { if (p.slug === slug) i = n; });
     if (i < 0) return;
-
-    var position = document.getElementById('position');
-    if (position) position.textContent = (i + 1) + ' / ' + pairs.length;
 
     var walk = document.getElementById('walk');
     if (!walk) return;
@@ -172,7 +227,7 @@
 
     var pairs = manifest.pairs;
     var grid = document.getElementById('grid');
-    if (grid) renderGrid(grid, pairs);
+    if (grid) renderLedger(grid, pairs);
 
     var slug = document.body.getAttribute('data-pair');
     if (slug) {
