@@ -20,26 +20,42 @@ If you'd rather preview the way GitHub Pages will actually serve it:
 python3 -m http.server   # then http://localhost:8000
 ```
 
+## Build
+
+Pair pages are generated from `data/pairs.js`. After editing the manifest:
+
+```sh
+node tools/build.mjs     # regenerate pairs/*.html and the index ledger
+node tools/check.mjs     # verify every reference resolves
+```
+
+No npm install — the scripts use only Node builtins. The *output* has no build
+step and no dependencies; it is the same static site it always was, and still
+opens straight from disk.
+
+Full instructions for adding a pair are in [docs/BUILD.md](docs/BUILD.md).
+
 ## Layout
 
 ```
-index.html              the grid of every pair
-pairs/<slug>.html       one page per location — markup only
+index.html              the grid of every pair — generated ledger, see docs/BUILD.md
+pairs/<slug>.html       one page per location — GENERATED, do not hand-edit
 assets/
   site.css              design tokens and every style in the series
   slider.js             the comparison widget
-  series.js             reads the manifest, builds the grid and prev/next
-  fonts/                Bodoni Moda and Inter, latin subset
+  series.js             reads the manifest, builds prev/next and the "Where" credit
+  cormorant-garamond.woff2   display face, latin subset
+  lora.woff2                 body face, latin subset
+  favicon.svg
 images/<slug>/
-  then.jpg  now.jpg     the aligned plates, 2048×1271
+  then.jpg  now.jpg     the aligned plates; most are 2048×1271, but the ratio
+                        is per-pair — see "plate" in the manifest
   thumb-then.jpg  thumb-now.jpg    640×397, for the index cards
-sources/<slug>/         originals, kept out of the site
-data/pairs.js           the manifest
+sources/<slug>/         originals, kept out of the site (and out of git)
+data/pairs.js           the manifest — the single source of truth for all page text
+tools/                  the build: node tools/build.mjs, node tools/check.mjs
 docs/                   notes on making these
 ```
-
-Every pair is cut to **2048×1271**. Keeping one ratio across the series is what
-lets a single `--plate` token drive both the cards and the stages.
 
 ### Why `sources/` exists
 
