@@ -4,20 +4,29 @@
    This is a .js file rather than .json on purpose. A <script> tag is not subject
    to the cross-origin rule that blocks fetch() on file:// URLs, so the site works
    when you open index.html straight off disk — no local server needed. The body
-   below is plain JSON; edit it exactly as you would a .json file. */
+   below is plain JSON; edit it exactly as you would a .json file.
+
+   pairs/*.html is GENERATED from this file by tools/build.mjs. Edit here, then
+   run: node tools/build.mjs */
 
 window.SCRANTON_PAIRS = {
   "pairs": [
     {
       "slug": "terrace-hotel",
-      "coords": [41.41234920167138, -75.66090212768962],
+      "coords": [
+        41.41234920167138,
+        -75.66090212768962
+      ],
       "streetview": "https://www.google.com/maps/@41.4122911,-75.6612226,3a,75y,99.71h,100.65t/data=!3m8!1e1!3m6!1sBLRcRjYnri-ldEgwsojXOw!2e0!5s20221101T000000!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-10.645355702515772%26panoid%3DBLRcRjYnri-ldEgwsojXOw%26yaw%3D99.71338750089717!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
       "title": "The Hotel Terrace",
       "shortTitle": "Hotel Terrace",
       "location": "Wyoming Avenue at Vine Street",
-      "neighborhood": "Central City",
-      "then": { "year": "c. 1900", "sort": 1900 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1900"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "Burned in 1986 and cleared. The stone wall across the street is the only thing left to line up."
     },
     {
@@ -25,11 +34,17 @@ window.SCRANTON_PAIRS = {
       "title": "Albright Memorial Library",
       "shortTitle": "Albright Library",
       "location": "Vine Street at North Washington Avenue",
-      "neighborhood": "Central City",
-      "coords": [41.41103948995529, -75.6596056608472],
+      "coords": [
+        41.41103948995529,
+        -75.6596056608472
+      ],
       "streetview": "https://www.google.com/maps/@41.4114909,-75.6597765,3a,41.2y,171.52h,98.57t/data=!3m7!1e1!3m5!1s2MTNSmlC8l9FOzcD9mgFMQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-8.574443778775318%26panoid%3D2MTNSmlC8l9FOzcD9mgFMQ%26yaw%3D171.52434159577936!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "c. 1900", "sort": 1901 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1900"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "Modelled on the Cluny in Paris. A century on, what has changed is mostly the signage."
     },
     {
@@ -37,11 +52,17 @@ window.SCRANTON_PAIRS = {
       "title": "Courthouse Square",
       "shortTitle": "Courthouse Square",
       "location": "Spruce Street at North Washington Avenue",
-      "neighborhood": "Central City",
-      "coords": [41.40806891348196, -75.66341906263511],
+      "coords": [
+        41.40806891348196,
+        -75.66341906263511
+      ],
       "streetview": "https://www.google.com/maps/@41.4078612,-75.6638135,3a,41.2y,72.53h,91.42t/data=!3m8!1e1!3m6!1szbribdtVa4ejFz-sv6oe4A!2e0!5s20260601T000000!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.4186702345729998%26panoid%3DzbribdtVa4ejFz-sv6oe4A%26yaw%3D72.52552591271353!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "c. 1905", "sort": 1905 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1905"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "The memorial column was new when this was taken. It is still the only thing in the frame that has not moved."
     },
     {
@@ -49,9 +70,12 @@ window.SCRANTON_PAIRS = {
       "title": "High School, Scranton, Pa.",
       "shortTitle": "High School",
       "location": "Vine Street at Adams Avenue",
-      "neighborhood": "Central City",
-      "then": { "year": "1910",  "sort": 1910 },
-      "now":  { "year": "Today", "sort": null },
+      "then": {
+        "year": "1910"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "The tower and the roofline hold their positions; the elms over the sidewalk do not."
     },
     {
@@ -59,21 +83,30 @@ window.SCRANTON_PAIRS = {
       "title": "The Auditorium, Providence, Pa.",
       "shortTitle": "The Auditorium",
       "location": "North Main Avenue at Oak Street",
-      "neighborhood": "Providence",
-      "then": { "year": "c. 1910", "sort": 1910 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1910"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "The shape survived the century. The surface did not."
     },
     {
       "slug": "scranton-dry-goods",
-      "coords": [41.40763243785716, -75.66613546034903],
+      "coords": [
+        41.40763243785716,
+        -75.66613546034903
+      ],
       "streetview": "https://www.google.com/maps/@41.4076542,-75.6665024,3a,75y,94.92h,100.32t/data=!3m7!1e1!3m5!1s4PxTuOIkgQn3g0qnMuEpaQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-10.323411543128728%26panoid%3D4PxTuOIkgQn3g0qnMuEpaQ%26yaw%3D94.917884167368!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
       "title": "Scranton Dry Goods Co.",
       "shortTitle": "Scranton Dry Goods",
       "location": "Lackawanna Avenue at Wyoming Avenue",
-      "neighborhood": "Central City",
-      "then": { "year": "1920s", "sort": 1925 },
-      "now":  { "year": "Today", "sort": null },
+      "then": {
+        "year": "1920s"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "The signs called it Scranton's Busiest Corner. The building is still standing; the signs are not."
     },
     {
@@ -81,9 +114,12 @@ window.SCRANTON_PAIRS = {
       "title": "Wyoming Avenue Looking South",
       "shortTitle": "Wyoming Avenue",
       "location": "Wyoming Avenue, looking south",
-      "neighborhood": "Central City",
-      "then": { "year": "Mid-century", "sort": 1945 },
-      "now":  { "year": "Today",       "sort": null },
+      "then": {
+        "year": "Mid-century"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "Two churches bookend the block and both still stand. Most of what filled the gap is now a parking lot."
     },
     {
@@ -91,11 +127,17 @@ window.SCRANTON_PAIRS = {
       "title": "The Hotel Jermyn",
       "shortTitle": "Hotel Jermyn",
       "location": "Spruce Street at Wyoming Avenue",
-      "neighborhood": "Central City",
-      "coords": [41.408822236174174, -75.66530236759533],
+      "coords": [
+        41.408822236174174,
+        -75.66530236759533
+      ],
       "streetview": "https://www.google.com/maps/@41.4088662,-75.6649772,3a,60y,268.74h,106.15t/data=!3m7!1e1!3m5!1siZEKiPwmdFgTkuzgW_VSag!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-16.14507900540474%26panoid%3DiZEKiPwmdFgTkuzgW_VSag%26yaw%3D268.73656627032386!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "1950s", "sort": 1955 },
-      "now":  { "year": "Today", "sort": null },
+      "then": {
+        "year": "1950s"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "Radler's and the Purple Cow are lettered across the ground floor. Both were gone by 1965; the building wasn't."
     },
     {
@@ -103,11 +145,17 @@ window.SCRANTON_PAIRS = {
       "title": "Dickson Manufacturing Co.",
       "shortTitle": "Dickson Works",
       "location": "Penn Avenue at Vine Street",
-      "neighborhood": "Central City",
-      "coords": [41.41303906200862, -75.66203107680582],
+      "coords": [
+        41.41303906200862,
+        -75.66203107680582
+      ],
       "streetview": "https://www.google.com/maps/@41.4127004,-75.6617426,3a,38.5y,340.95h,94.48t/data=!3m7!1e1!3m5!1skWqmUTpGLohCwbgsrUoNcg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-4.483780200034431%26panoid%3DkWqmUTpGLohCwbgsrUoNcg%26yaw%3D340.9470089472848!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "c. 1895", "sort": 1895 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1895"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "The works turned out a hundred locomotives a year. The tower still stands, shorn of its spire, over a paper warehouse."
     },
     {
@@ -115,11 +163,17 @@ window.SCRANTON_PAIRS = {
       "title": "The Lackawanna Avenue Bridge",
       "shortTitle": "Lackawanna Avenue Bridge",
       "location": "Lackawanna Avenue at the river crossing",
-      "neighborhood": "Central City",
-      "coords": [41.41075177892645, -75.67136729335459],
+      "coords": [
+        41.41075177892645,
+        -75.67136729335459
+      ],
       "streetview": "https://www.google.com/maps/@41.4107163,-75.6713584,3a,42.9y,346.95h,89.4t/data=!3m8!1e1!3m6!1sXnyueuKyQJ79QvfvpYzMzQ!2e0!5s20201101T000000!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.6047702408824307%26panoid%3DXnyueuKyQJ79QvfvpYzMzQ%26yaw%3D346.9517200199852!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "c. 1910", "sort": 1910 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1910"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "The Central Railroad of New Jersey station still stands at the far end. The bridge under it has been rebuilt, and the trolleys went with it."
     },
     {
@@ -127,11 +181,17 @@ window.SCRANTON_PAIRS = {
       "title": "The St. Charles Hotel",
       "shortTitle": "St. Charles Hotel",
       "location": "128 Penn Avenue",
-      "neighborhood": "Central City",
-      "coords": [41.40911751423839, -75.66667569162247],
+      "coords": [
+        41.40911751423839,
+        -75.66667569162247
+      ],
       "streetview": "https://www.google.com/maps/@41.4091693,-75.6667878,3a,75y,108.47h,99.64t/data=!3m7!1e1!3m5!1shX94PhuYV8YSvsrZCqzuOA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-9.644312253397402%26panoid%3DhX94PhuYV8YSvsrZCqzuOA%26yaw%3D108.47345963023916!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "c. 1900", "sort": 1900 },
-      "now":  { "year": "Today",   "sort": null },
+      "then": {
+        "year": "c. 1900"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "One of the city's first hotels and, for two decades, the unofficial seat of local Democratic politics. Razed in 1913, its replacement razed again in 1956; a parking garage holds the corner now."
     },
     {
@@ -139,11 +199,17 @@ window.SCRANTON_PAIRS = {
       "title": "Wyoming Avenue's Theater Row",
       "shortTitle": "Theater Row",
       "location": "200 block of Wyoming Avenue",
-      "neighborhood": "Central City",
-      "coords": [41.4095604540505, -75.66426057329929],
+      "coords": [
+        41.4095604540505,
+        -75.66426057329929
+      ],
       "streetview": "https://www.google.com/maps/place/The+Ritz+Theater/@41.4096456,-75.6641157,3a,78.2y,249.46h,93.11t/data=!3m8!1e1!3m6!1sWLnkPJtsyQGqgkXZJCW6og!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-3.1135066109669083%26panoid%3DWLnkPJtsyQGqgkXZJCW6og%26yaw%3D249.45910827088298!7i16384!8i8192!4m15!1m8!3m7!1s0x89c4ded683e2a073:0x3aa302825f09e426!2s224+Wyoming+Ave,+Scranton,+PA+18503!3b1!8m2!3d41.4091196!4d-75.6640339!16s%2Fg%2F11bw425nzm!3m5!1s0x89c4df2357e3f651:0x91564bccd05d3586!8m2!3d41.4091527!4d-75.6644538!16s%2Fg%2F11hymbh7zn?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "1936", "sort": 1936 },
-      "now":  { "year": "Today", "sort": null },
+      "then": {
+        "year": "1936"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "Three theaters and five restaurants lined this block on a snowy night in 1936. All of it is gone now, cleared for a parking lot and a mural."
     },
     {
@@ -151,11 +217,17 @@ window.SCRANTON_PAIRS = {
       "title": "The Last Streetcar",
       "shortTitle": "The Last Streetcar",
       "location": "400 block of Spruce Street",
-      "neighborhood": "Central City",
-      "coords": [41.40878353258816, -75.66507614275912],
+      "coords": [
+        41.40878353258816,
+        -75.66507614275912
+      ],
       "streetview": "https://www.google.com/maps/@41.4087966,-75.6650781,3a,60y,116.82h,90t/data=!3m7!1e1!3m5!1s6OPOr5B_JH_G8bX64mI9FA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D6OPOr5B_JH_G8bX64mI9FA%26yaw%3D116.81738207083923!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
-      "then": { "year": "1950", "sort": 1950 },
-      "now":  { "year": "Today", "sort": null },
+      "then": {
+        "year": "1950"
+      },
+      "now": {
+        "year": "Today"
+      },
       "blurb": "Car 507 rolled through here on the last day Scranton's streetcars ran. The tracks and wire are gone; the brick building down toward the corner isn't."
     }
   ]

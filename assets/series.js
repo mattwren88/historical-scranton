@@ -130,7 +130,7 @@
     grid.appendChild(frag);
   }
 
-  function walkLink(label, pair, side) {
+  function walkLink(pair, side) {
     var link = document.createElement('a');
     link.className = 'walk__' + side;
     link.href = pageFor(pair.slug);
@@ -191,8 +191,8 @@
 
     var walk = document.getElementById('walk');
     if (!walk) return;
-    if (pairs[i - 1]) walk.appendChild(walkLink('Previous', pairs[i - 1], 'prev'));
-    if (pairs[i + 1]) walk.appendChild(walkLink('Next', pairs[i + 1], 'next'));
+    if (pairs[i - 1]) walk.appendChild(walkLink(pairs[i - 1], 'prev'));
+    if (pairs[i + 1]) walk.appendChild(walkLink(pairs[i + 1], 'next'));
   }
 
   function fail(message) {

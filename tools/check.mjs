@@ -120,6 +120,9 @@ const CSS_ALLOWLIST = new Set([
   'row__now',      // built by series.js thumb(pair, half)
   'walk__prev',    // built by series.js walkLink(pair, side)
   'walk__next',    // built by series.js walkLink(pair, side)
+  'woff2',         // not a class: matched from the ".woff2" in url('…woff2') inside
+                   // the @font-face src declarations (site.css:13,21) by the naive
+                   // classSelectors regex, which scans the whole file for "." + word chars
 ]);
 const classSelectors = new Set([...css.matchAll(/\.([a-zA-Z][\w-]*)/g)].map((m) => m[1]));
 for (const name of classSelectors) {
