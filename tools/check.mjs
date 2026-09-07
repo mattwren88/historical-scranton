@@ -139,6 +139,14 @@ for (const pair of pairs) {
   }
 }
 
+/* --- 8. the index ships a real link to every pair, before any script runs --- */
+const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+for (const slug of slugs) {
+  if (!indexHtml.includes(`href="pairs/${slug}.html"`)) {
+    fail(`index.html has no static link to pairs/${slug}.html — the ledger is not crawlable`);
+  }
+}
+
 /* --- report --- */
 if (failures.length) {
   console.error(`check: ${failures.length} failure(s)\n`);

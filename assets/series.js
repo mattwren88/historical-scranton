@@ -14,7 +14,6 @@
   var ROOT = document.documentElement.getAttribute('data-root') || '';
 
   var ICONS = {
-    swap: 'M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4',
     pin: 'M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z',
     chevron: 'M9 18l6-6-6-6',
     chevronLeft: 'M15 18l-6-6 6-6'
@@ -47,87 +46,6 @@
     if (className) el.className = className;
     if (text) el.textContent = text;
     return el;
-  }
-
-  function thumb(pair, half) {
-    var img = new Image(640, 397);
-    img.className = 'row__' + half;
-    img.src = url('images/' + pair.slug + '/thumb-' + half + '.jpg');
-    img.decoding = 'async';
-    return img;
-  }
-
-  function row(pair, index) {
-    var link = document.createElement('a');
-    link.className = 'row';
-    link.href = pageFor(pair.slug);
-
-    var frame = span('row__frame plate');
-
-    var now = thumb(pair, 'now');
-    now.alt = pair.title + ', today';
-
-    // The historical plate is decorative here: it only appears on hover, and
-    // the link text already names the place.
-    var then = thumb(pair, 'then');
-    then.alt = '';
-    then.setAttribute('aria-hidden', 'true');
-
-    // Roughly the first two rows are above the fold; everything after can wait.
-    if (index >= 2) { now.loading = 'lazy'; then.loading = 'lazy'; }
-
-    frame.appendChild(now);
-    frame.appendChild(then);
-
-    var body = document.createElement('div');
-
-    var title = document.createElement('h2');
-    title.className = 'row__title';
-    title.textContent = pair.shortTitle || pair.title;
-    body.appendChild(title);
-
-    if (pair.location) {
-      var where = document.createElement('p');
-      where.className = 'row__where';
-      where.appendChild(icon('pin'));
-      where.appendChild(document.createTextNode(pair.location));
-      body.appendChild(where);
-    }
-
-    if (pair.blurb) {
-      var blurb = document.createElement('p');
-      blurb.className = 'row__blurb';
-      blurb.textContent = pair.blurb;
-      body.appendChild(blurb);
-    }
-
-    var years = document.createElement('p');
-    years.className = 'row__years';
-    years.appendChild(document.createTextNode(pair.then.year));
-    var to = span('row__to');
-    to.appendChild(icon('swap', true));
-    to.appendChild(document.createTextNode(pair.now.year.toLowerCase()));
-    years.appendChild(to);
-
-    var mark = span('row__mark');
-    mark.appendChild(icon('chevron'));
-
-    link.appendChild(frame);
-    link.appendChild(body);
-    link.appendChild(years);
-    link.appendChild(mark);
-
-    var item = document.createElement('li');
-    item.appendChild(link);
-    return item;
-  }
-
-
-  function renderLedger(grid, pairs) {
-    var frag = document.createDocumentFragment();
-    pairs.forEach(function (pair, i) { frag.appendChild(row(pair, i)); });
-    grid.textContent = '';
-    grid.appendChild(frag);
   }
 
   function walkLink(pair, side) {
@@ -195,26 +113,14 @@
     if (pairs[i + 1]) walk.appendChild(walkLink(pairs[i + 1], 'next'));
   }
 
-  function fail(message) {
-    var grid = document.getElementById('grid');
-    if (!grid) return;
-    var note = document.createElement('p');
-    note.className = 'grid-error';
-    note.textContent = message;
-    grid.replaceWith(note);
-  }
-
   function boot() {
+    // The ledger is static HTML now; the manifest only drives the pair pages'
+    // prev/next links and the "Where" credit. A missing manifest degrades to a
+    // page without those, rather than to a page without content.
     var manifest = window.SCRANTON_PAIRS;
-    if (!manifest || !manifest.pairs) {
-      fail('The manifest did not load. Check that data/pairs.js is present and that ' +
-           'this page includes its <script> tag before assets/series.js.');
-      return;
-    }
+    if (!manifest || !manifest.pairs) return;
 
     var pairs = manifest.pairs;
-    var grid = document.getElementById('grid');
-    if (grid) renderLedger(grid, pairs);
 
     var slug = document.body.getAttribute('data-pair');
     if (slug) {

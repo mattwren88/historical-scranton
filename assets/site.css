@@ -255,7 +255,6 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
 @media (hover:hover){.row:hover .row__mark{opacity:1;transform:none}}
 .row:focus-visible .row__mark{opacity:1;transform:none}
 
-.grid-error{margin:0;padding:20px 0;font-size:14px;color:var(--accent-700)}
 
 .sitefoot{
   margin-top:var(--space-8);
