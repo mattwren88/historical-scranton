@@ -323,6 +323,11 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   pointer-events:none;
   -webkit-user-drag:none;
 }
+/* <picture> exists only to offer format alternatives; it must not become a
+   box, or the absolutely-positioned plate inside it would resolve against the
+   wrapper instead of the stage. */
+.stage picture,
+.row__frame picture{display:contents}
 /* The historical plate sits on top, clipped to the seam. */
 .plate--then{z-index:2;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 

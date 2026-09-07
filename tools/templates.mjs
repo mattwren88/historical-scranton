@@ -17,10 +17,31 @@ export function attr(s) {
     .replace(/"/g, '&quot;');
 }
 
+const PLATE_WIDTHS = [768, 1024, 1536, 2048];
+/* The stage is 3/5 of the frame until the expand button grows it to the full
+   frame, and a browser will not re-pick a candidate after that — so `sizes`
+   describes the expanded width. Costs mobile nothing (100vw there) and keeps
+   an expanded plate sharp. */
+const PLATE_SIZES = '(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px';
+
+function srcset(slug, base, ext, intrinsicWidth) {
+  return PLATE_WIDTHS
+    .filter((w) => w <= intrinsicWidth)
+    .map((w) => `../images/${slug}/${base}-${w}.${ext} ${w}w`)
+    .join(', ');
+}
+
 function plateImg(pair, half) {
   const { width, height } = pair.plate;
-  return `<img class="plate--${half}" src="../images/${pair.slug}/${half}.jpg" width="${width}" height="${height}"
-             alt="${attr(pair[half].alt)}" draggable="false">`;
+  const s = pair.slug;
+  return `<picture>
+          <source type="image/avif" srcset="${srcset(s, half, 'avif', width)}" sizes="${PLATE_SIZES}">
+          <source type="image/webp" srcset="${srcset(s, half, 'webp', width)}" sizes="${PLATE_SIZES}">
+          <img class="plate--${half}" src="../images/${s}/${half}.jpg"
+               srcset="${srcset(s, half, 'jpg', width)}" sizes="${PLATE_SIZES}"
+               width="${width}" height="${height}"
+               alt="${attr(pair[half].alt)}" draggable="false">
+        </picture>`;
 }
 
 const ICON_THEN = '<svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20"/><path d="M7 4v5"/></svg>';
@@ -50,6 +71,8 @@ export function pairPage(pair) {
 <meta name="description" content="${attr(pair.description)}">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="${srcset(pair.slug, 'now', 'avif', pair.plate.width)}" imagesizes="${PLATE_SIZES}">
 </head>
 <body data-pair="${pair.slug}">
 <main class="page">
@@ -133,6 +156,11 @@ const ICON_CHEVRON = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><
 export function ledger(pairs) {
   return pairs.map((pair, i) => {
     const lazy = i >= 2 ? ' loading="lazy"' : '';
+    const thumb = (half, extra) => `<picture>
+            <source type="image/avif" srcset="images/${pair.slug}/thumb-${half}-320.avif 320w, images/${pair.slug}/thumb-${half}-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/${pair.slug}/thumb-${half}-320.webp 320w, images/${pair.slug}/thumb-${half}-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__${half}" src="images/${pair.slug}/thumb-${half}.jpg" srcset="images/${pair.slug}/thumb-${half}-320.jpg 320w, images/${pair.slug}/thumb-${half}-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async"${lazy} ${extra}>
+          </picture>`;
     const where = pair.location
       ? `\n        <p class="row__where">${ICON_PIN_ROW}${pair.location}</p>` : '';
     const blurb = pair.blurb
@@ -140,8 +168,8 @@ export function ledger(pairs) {
     return `    <li>
       <a class="row" href="pairs/${pair.slug}.html">
         <span class="row__frame plate">
-          <img class="row__now" src="images/${pair.slug}/thumb-now.jpg" width="640" height="397" decoding="async"${lazy} alt="${attr(pair.title)}, today">
-          <img class="row__then" src="images/${pair.slug}/thumb-then.jpg" width="640" height="397" decoding="async"${lazy} alt="" aria-hidden="true">
+          ${thumb('now', `alt="${attr(pair.title)}, today"`)}
+          ${thumb('then', 'alt="" aria-hidden="true"')}
         </span>
         <div>
           <h2 class="row__title">${pair.shortTitle || pair.title}</h2>${where}${blurb}

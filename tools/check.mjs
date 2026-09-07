@@ -147,6 +147,25 @@ for (const slug of slugs) {
   }
 }
 
+/* --- 9. every responsive variant the templates reference actually exists --- */
+const PLATE_WIDTHS_CHECK = [768, 1024, 1536, 2048];
+const THUMB_WIDTHS_CHECK = [320, 640];
+for (const pair of pairs) {
+  for (const half of HALVES) {
+    for (const ext of ['avif', 'webp', 'jpg']) {
+      for (const w of PLATE_WIDTHS_CHECK) {
+        if (w > pair.plate.width) continue;
+        const p = path.join(ROOT, 'images', pair.slug, `${half}-${w}.${ext}`);
+        if (!fs.existsSync(p)) fail(`missing variant: ${rel(p)} — run node tools/images.mjs`);
+      }
+      for (const w of THUMB_WIDTHS_CHECK) {
+        const p = path.join(ROOT, 'images', pair.slug, `thumb-${half}-${w}.${ext}`);
+        if (!fs.existsSync(p)) fail(`missing variant: ${rel(p)} — run node tools/images.mjs`);
+      }
+    }
+  }
+}
+
 /* --- report --- */
 if (failures.length) {
   console.error(`check: ${failures.length} failure(s)\n`);

@@ -7,6 +7,8 @@
 <meta name="description" content="Car 507 of the Scranton Transit Co.'s Dunmore Suburban line on the 400 block of Spruce Street, October 7, 1950, the last day of streetcar service in the city that had earned the nickname 'the Electric City.'">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="../images/spruce-street-trolley/now-768.avif 768w, ../images/spruce-street-trolley/now-1024.avif 1024w" imagesizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
 </head>
 <body data-pair="spruce-street-trolley">
 <main class="page">
@@ -24,10 +26,22 @@
 
     <div class="comparison" data-mode="slide" style="--plate:1476/1202">
       <div class="stage plate">
-        <img class="plate--now" src="../images/spruce-street-trolley/now.jpg" width="1476" height="1202"
-             alt="Spruce Street today: a glass-fronted modern building on the left where the old storefronts stood, cars in the travel lanes where the streetcar tracks ran, and the same ornate brick building still standing on the right in the distance." draggable="false">
-        <img class="plate--then" src="../images/spruce-street-trolley/then.jpg" width="1476" height="1202"
-             alt="A streetcar reading DUNMORE SUB crosses the 400 block of Spruce Street in 1950, overhead wires crisscrossing above it, with a man crossing in front of it and storefronts, awnings and parked cars lining both sides of the street." draggable="false">
+        <picture>
+          <source type="image/avif" srcset="../images/spruce-street-trolley/now-768.avif 768w, ../images/spruce-street-trolley/now-1024.avif 1024w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/spruce-street-trolley/now-768.webp 768w, ../images/spruce-street-trolley/now-1024.webp 1024w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--now" src="../images/spruce-street-trolley/now.jpg"
+               srcset="../images/spruce-street-trolley/now-768.jpg 768w, ../images/spruce-street-trolley/now-1024.jpg 1024w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="1476" height="1202"
+               alt="Spruce Street today: a glass-fronted modern building on the left where the old storefronts stood, cars in the travel lanes where the streetcar tracks ran, and the same ornate brick building still standing on the right in the distance." draggable="false">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../images/spruce-street-trolley/then-768.avif 768w, ../images/spruce-street-trolley/then-1024.avif 1024w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/spruce-street-trolley/then-768.webp 768w, ../images/spruce-street-trolley/then-1024.webp 1024w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--then" src="../images/spruce-street-trolley/then.jpg"
+               srcset="../images/spruce-street-trolley/then-768.jpg 768w, ../images/spruce-street-trolley/then-1024.jpg 1024w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="1476" height="1202"
+               alt="A streetcar reading DUNMORE SUB crosses the 400 block of Spruce Street in 1950, overhead wires crisscrossing above it, with a man crossing in front of it and storefronts, awnings and parked cars lining both sides of the street." draggable="false">
+        </picture>
         <span class="seam"></span>
         <input class="range" type="range" min="0" max="100" step="0.1" value="50"
                aria-label="Compare 1950 with today. Drag, or use the arrow keys.">

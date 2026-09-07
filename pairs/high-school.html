@@ -7,6 +7,8 @@
 <meta name="description" content="A 1910 postcard of Scranton Central High School, aligned against the same view on Google Street View today.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="../images/high-school/now-768.avif 768w, ../images/high-school/now-1024.avif 1024w, ../images/high-school/now-1536.avif 1536w, ../images/high-school/now-2048.avif 2048w" imagesizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
 </head>
 <body data-pair="high-school">
 <main class="page">
@@ -24,10 +26,22 @@
 
     <div class="comparison" data-mode="slide" style="--plate:2048/1271">
       <div class="stage plate">
-        <img class="plate--now" src="../images/high-school/now.jpg" width="2048" height="1271"
-             alt="The same block today: the stone high school with its copper spire, seen past utility poles and parked cars." draggable="false">
-        <img class="plate--then" src="../images/high-school/then.jpg" width="2048" height="1271"
-             alt="A hand-coloured 1910 postcard of the same block: elms arch over a crowded sidewalk as a crowd streams toward the school entrance." draggable="false">
+        <picture>
+          <source type="image/avif" srcset="../images/high-school/now-768.avif 768w, ../images/high-school/now-1024.avif 1024w, ../images/high-school/now-1536.avif 1536w, ../images/high-school/now-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/high-school/now-768.webp 768w, ../images/high-school/now-1024.webp 1024w, ../images/high-school/now-1536.webp 1536w, ../images/high-school/now-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--now" src="../images/high-school/now.jpg"
+               srcset="../images/high-school/now-768.jpg 768w, ../images/high-school/now-1024.jpg 1024w, ../images/high-school/now-1536.jpg 1536w, ../images/high-school/now-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="The same block today: the stone high school with its copper spire, seen past utility poles and parked cars." draggable="false">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../images/high-school/then-768.avif 768w, ../images/high-school/then-1024.avif 1024w, ../images/high-school/then-1536.avif 1536w, ../images/high-school/then-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/high-school/then-768.webp 768w, ../images/high-school/then-1024.webp 1024w, ../images/high-school/then-1536.webp 1536w, ../images/high-school/then-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--then" src="../images/high-school/then.jpg"
+               srcset="../images/high-school/then-768.jpg 768w, ../images/high-school/then-1024.jpg 1024w, ../images/high-school/then-1536.jpg 1536w, ../images/high-school/then-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="A hand-coloured 1910 postcard of the same block: elms arch over a crowded sidewalk as a crowd streams toward the school entrance." draggable="false">
+        </picture>
         <span class="seam"></span>
         <input class="range" type="range" min="0" max="100" step="0.1" value="50"
                aria-label="Compare 1910 with today. Drag, or use the arrow keys.">
