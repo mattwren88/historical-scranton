@@ -71,6 +71,8 @@ export function pairPage(pair) {
 <meta name="description" content="${attr(pair.description)}">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" href="../assets/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/lora.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif"
       imagesrcset="${srcset(pair.slug, 'now', 'avif', pair.plate.width)}" imagesizes="${PLATE_SIZES}">
 </head>
@@ -139,9 +141,9 @@ ${credits(pair)}
 
 </main>
 
-<script src="../data/pairs.js"></script>
-<script src="../assets/slider.js"></script>
-<script src="../assets/series.js"></script>
+<script src="../data/pairs.js" defer></script>
+<script src="../assets/slider.js" defer></script>
+<script src="../assets/series.js" defer></script>
 </body>
 </html>
 `;

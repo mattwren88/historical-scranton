@@ -140,9 +140,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('.comparison'), init);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
+  // Both scripts load with defer, so the document is parsed by the time this
+  // runs — see the <script> tags in the page template.
+  boot();
 })();
