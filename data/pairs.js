@@ -121,6 +121,42 @@ window.SCRANTON_PAIRS = {
       "then": { "year": "c. 1910", "sort": 1910 },
       "now":  { "year": "Today",   "sort": null },
       "blurb": "The Central Railroad of New Jersey station still stands at the far end. The bridge under it has been rebuilt, and the trolleys went with it."
+    },
+    {
+      "slug": "st-charles-hotel",
+      "title": "The St. Charles Hotel",
+      "shortTitle": "St. Charles Hotel",
+      "location": "128 Penn Avenue",
+      "neighborhood": "Central City",
+      "coords": [41.40911751423839, -75.66667569162247],
+      "streetview": "https://www.google.com/maps/@41.4091693,-75.6667878,3a,75y,108.47h,99.64t/data=!3m7!1e1!3m5!1shX94PhuYV8YSvsrZCqzuOA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-9.644312253397402%26panoid%3DhX94PhuYV8YSvsrZCqzuOA%26yaw%3D108.47345963023916!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+      "then": { "year": "c. 1900", "sort": 1900 },
+      "now":  { "year": "Today",   "sort": null },
+      "blurb": "One of the city's first hotels and, for two decades, the unofficial seat of local Democratic politics. Razed in 1913, its replacement razed again in 1956; a parking garage holds the corner now."
+    },
+    {
+      "slug": "wyoming-ave-theater-row",
+      "title": "Wyoming Avenue's Theater Row",
+      "shortTitle": "Theater Row",
+      "location": "200 block of Wyoming Avenue",
+      "neighborhood": "Central City",
+      "coords": [41.4095604540505, -75.66426057329929],
+      "streetview": "https://www.google.com/maps/place/The+Ritz+Theater/@41.4096456,-75.6641157,3a,78.2y,249.46h,93.11t/data=!3m8!1e1!3m6!1sWLnkPJtsyQGqgkXZJCW6og!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-3.1135066109669083%26panoid%3DWLnkPJtsyQGqgkXZJCW6og%26yaw%3D249.45910827088298!7i16384!8i8192!4m15!1m8!3m7!1s0x89c4ded683e2a073:0x3aa302825f09e426!2s224+Wyoming+Ave,+Scranton,+PA+18503!3b1!8m2!3d41.4091196!4d-75.6640339!16s%2Fg%2F11bw425nzm!3m5!1s0x89c4df2357e3f651:0x91564bccd05d3586!8m2!3d41.4091527!4d-75.6644538!16s%2Fg%2F11hymbh7zn?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+      "then": { "year": "1936", "sort": 1936 },
+      "now":  { "year": "Today", "sort": null },
+      "blurb": "Three theaters and five restaurants lined this block on a snowy night in 1936. All of it is gone now, cleared for a parking lot and a mural."
+    },
+    {
+      "slug": "spruce-street-trolley",
+      "title": "The Last Streetcar",
+      "shortTitle": "The Last Streetcar",
+      "location": "400 block of Spruce Street",
+      "neighborhood": "Central City",
+      "coords": [41.40878353258816, -75.66507614275912],
+      "streetview": "https://www.google.com/maps/@41.4087966,-75.6650781,3a,60y,116.82h,90t/data=!3m7!1e1!3m5!1s6OPOr5B_JH_G8bX64mI9FA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D6OPOr5B_JH_G8bX64mI9FA%26yaw%3D116.81738207083923!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+      "then": { "year": "1950", "sort": 1950 },
+      "now":  { "year": "Today", "sort": null },
+      "blurb": "Car 507 rolled through here on the last day Scranton's streetcars ran. The tracks and wire are gone; the brick building down toward the corner isn't."
     }
   ]
 };

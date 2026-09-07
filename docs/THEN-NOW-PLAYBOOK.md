@@ -95,6 +95,9 @@ crop and the HTML. The point-picking stays manual — that's the part that needs
 | `wyoming-ave` | `pairs/wyoming-ave.html` | mid-century linen card | Street View | straight crop; churches match, background tower ~3% off |
 | `dickson-manufacturing` | `pairs/dickson-manufacturing.html` | c. 1895 photograph | Street View | frame pre-aligned to the photograph; top 7% of the modern plate is reconstructed sky |
 | `lackawanna-ave-bridge` | `pairs/lackawanna-ave-bridge.html` | c. 1910 photograph | Street View | frames arrived pre-matched; crop only, no scaling; both halves upscaled 3.6x |
+| `st-charles-hotel` | `pairs/st-charles-hotel.html` | c. 1900 photograph | Street View | frames arrived pre-matched; straight crop; kept its own tall 1547x2048 frame instead of the series' usual 2048x1271 |
+| `wyoming-ave-theater-row` | `pairs/wyoming-ave-theater-row.html` | 1936 photograph | Street View | frames arrived pre-matched; straight crop; kept its own 2048x1530 frame; the entire subject row is demolished, registered only on the distant tower |
+| `spruce-street-trolley` | `pairs/spruce-street-trolley.html` | 1950 photograph | Street View | frames arrived pre-matched; straight crop; kept its own 1476x1202 frame; registers on the brick building down the block, near side entirely rebuilt |
 
 **A full perspective correction is often too much.** `scranton-dry-goods`
 shipped with a homography that matched six points to within 2% — and looked
@@ -236,6 +239,18 @@ safely reconstructible, and say on the page that you did:
 - **Do not reconstruct ground.** Kerbs, markings and parked cars carry structure
   that cannot be extrapolated honestly. Crop so the frame lands on real pixels
   instead, or re-capture.
+
+**When a pair doesn't fit the series' landscape ratio.** Every plate normally
+ships at 2048x1271 because one `--plate` token drives both the index card and
+the pair-page stage. Some sources — a tall postcard of a single building, say
+— lose too much if forced into that crop. Instead of cropping to fit, override
+`--plate` inline on that pair's `.comparison` element (`style="--plate:W/H"`
+using the images' real pixel dimensions) and set the `<img>` `width`/`height`
+attributes to match. `object-fit:cover` on `.stage` is harmless here because
+the container ratio now equals the image ratio exactly, so nothing crops.
+The index thumbnail can stay a normal 640x397 crop — that's expected of a
+thumbnail — only the pair page itself needs to show the whole frame.
+`st-charles-hotel` did this at 1547x2048 (portrait).
 
 Originals for each pair live in `sources/<slug>/`. See the repo README for the
 steps to add a new one.

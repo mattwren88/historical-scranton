@@ -104,6 +104,35 @@
       });
     }
 
+    // Full-width toggle: grows the stage from its usual 60% share to the
+    // full row, which pushes the sidecar onto its own line below (flex-wrap,
+    // in site.css) rather than shrinking its column to nothing. The reflow
+    // itself — sidecar jumping from beside the stage to below it, or back —
+    // happens partway through the width transition, at whatever moment it
+    // stops fitting on the line, so the sidecar fades out the instant the
+    // width starts moving (not after a wait — waiting to start was the jank)
+    // and stays hidden for exactly as long as the width transition takes,
+    // then fades back in wherever it landed. That fade-in is also what makes
+    // it "reappear" when collapsing back to normal.
+    var GROW_MS = 450;
+    var expandBtn = comparison.querySelector('.expand');
+    var pairEl = comparison.closest('.pair');
+    var transitTimer = null;
+    if (expandBtn && pairEl) {
+      expandBtn.addEventListener('click', function () {
+        var wide = !pairEl.classList.contains('pair--wide');
+        expandBtn.setAttribute('aria-pressed', String(wide));
+        expandBtn.setAttribute('aria-label', wide ? 'Collapse the plate' : 'Expand the plate to full width');
+
+        clearTimeout(transitTimer);
+        pairEl.classList.add('pair--transit');
+        pairEl.classList.toggle('pair--wide', wide);
+        transitTimer = setTimeout(function () {
+          pairEl.classList.remove('pair--transit');
+        }, GROW_MS);
+      });
+    }
+
     setMode(mode());
   }
 

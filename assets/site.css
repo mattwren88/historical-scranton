@@ -297,11 +297,25 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
 .topbar a{text-decoration:none}
 .topbar__series{color:var(--n-700)}
 
+/* Grid, not flex: a flex line's width depends on what else shares the line,
+   so the instant the sidecar wraps off it, the stage's flex-grow share
+   jumps to fill the space freed up — a real discontinuity, not just an
+   easing issue. Grid tracks don't have that problem: column 1's width comes
+   only from grid-template-columns, never from what is or isn't sitting in
+   column 2, so it can be *any* fraction, at *any* moment, independent of
+   where the sidecar currently is. Two rows exist from the start; the
+   sidecar simply relocates between (row 1, col 2) and (row 2, col 1) — a
+   discrete jump, but one made while it's already invisible (see
+   .pair--transit below), so nothing about the move itself is ever seen. */
 .pair{
   display:grid;
   grid-template-columns:3fr 2fr;
-  gap:var(--space-8);
+  grid-template-rows:auto auto;
+  column-gap:var(--space-8);
+  row-gap:var(--space-6);
   align-items:start;
+  transition:grid-template-columns .45s cubic-bezier(.4,0,.2,1),
+             column-gap .45s cubic-bezier(.4,0,.2,1);
 }
 
 .stage{
@@ -369,6 +383,66 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
 .range::-moz-range-thumb{width:2px;height:100%;background:transparent;border:0;border-radius:0}
 .range::-moz-range-track{background:transparent;border:0}
 .range:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+/* Full-width toggle, a small chip pinned to the plate's corner. */
+.expand{
+  position:absolute;
+  top:calc(var(--mat) + 10px);
+  right:calc(var(--mat) + 10px);
+  z-index:6;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  padding:0;
+  appearance:none;
+  border:1px solid color-mix(in srgb, var(--accent-100) 35%, transparent);
+  border-radius:var(--radius);
+  background:color-mix(in srgb, var(--ink) 55%, transparent);
+  color:var(--accent-100);
+  cursor:pointer;
+  transition:background .16s ease,border-color .16s ease;
+}
+.expand:hover{background:color-mix(in srgb, var(--ink) 72%, transparent);border-color:var(--accent-100)}
+.expand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* The two icons share one cell and swap with a quarter-turn crossfade,
+   rather than a hard show/hide switch (the `hidden` attribute doesn't
+   reliably hide inline SVG across browsers, so state is driven by
+   aria-pressed instead). */
+.expand .icon{
+  position:absolute;
+  inset:9px;
+  width:16px;
+  height:16px;
+  opacity:1;
+  transform:rotate(0deg) scale(1);
+  transition:opacity .22s ease, transform .22s ease;
+}
+.expand[aria-pressed="true"] .expand__in{opacity:0;transform:rotate(45deg) scale(.6)}
+.expand[aria-pressed="false"] .expand__out{opacity:0;transform:rotate(-45deg) scale(.6)}
+
+.comparison{grid-column:1;grid-row:1;min-width:0}
+
+.sidecar{
+  grid-column:2;
+  grid-row:1;
+  min-width:0;
+  overflow:hidden;
+  transition:opacity .2s ease;
+}
+/* Widening: column 1 grows to fill the row (column 2 shrinks to nothing but
+   stays a real track, which is what keeps the width transition smooth — see
+   the .pair comment above), and the sidecar relocates to a second row under
+   column 1, at full width, no longer squeezed into a vanishing column. It's
+   hidden only for the moment that relocation happens, so the jump in its
+   position is never actually seen; slider.js times .pair--transit to
+   bracket the width transition, then clears it so the sidecar fades back in
+   wherever it just landed. */
+.pair--wide{grid-template-columns:1fr 0fr;column-gap:0}
+.pair--wide .sidecar{grid-column:1;grid-row:2}
+.pair--transit .sidecar{opacity:0;pointer-events:none}
 
 /* Years and the tick rail, inset by the mat so the tick sits under the seam. */
 .scale{padding:0 var(--mat)}
@@ -519,6 +593,8 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
 
 @media (max-width:860px){
   .pair{grid-template-columns:minmax(0,1fr);gap:var(--space-6)}
+  .comparison{grid-column:1;grid-row:1}
+  .sidecar{grid-column:1;grid-row:2}
   .row{grid-template-columns:minmax(0,1fr);gap:0}
   .row__years{text-align:left;margin-top:10px}
   .row__to{justify-content:flex-start}
@@ -526,6 +602,7 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   .modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
   .mode{padding:7px 8px;font-size:10px;letter-spacing:.1em}
   .masthead__span{text-align:left}
+  .expand{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
