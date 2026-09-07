@@ -57,6 +57,11 @@ tools/                  the build: node tools/build.mjs, node tools/check.mjs
 docs/                   notes on making these
 ```
 
+`sources/` holds the untouched originals — the scanned postcards and the raw
+Street View captures each pair was built from. It is gitignored: these are
+working files, not site files, and they are three times the size of everything
+that actually ships. **Back them up separately; git is not doing it for you.**
+
 ### Why `sources/` exists
 
 The served JPEGs are compressed and, where the Street View crop had to be
