@@ -38,7 +38,9 @@
       var m = mode();
 
       comparison.style.setProperty('--pos', v + '%');
-      comparison.style.setProperty('--fade', (v / 100).toFixed(3));
+      // --fade is the opacity of the "then" plate, which sits left of the
+      // seam; as v (percent toward "now") rises, then fades out.
+      comparison.style.setProperty('--fade', (1 - v / 100).toFixed(3));
       comparison.style.setProperty('--then-shown', showThen ? 1 : 0);
 
       if (m === 'blink') {
@@ -46,14 +48,14 @@
         comparison.style.setProperty('--now-weight', showThen ? 0.35 : 1);
       } else {
         // Each year dims as its own half is squeezed out of the frame.
-        comparison.style.setProperty('--then-weight', (0.35 + 0.65 * (v / 100)).toFixed(3));
-        comparison.style.setProperty('--now-weight', (0.35 + 0.65 * (1 - v / 100)).toFixed(3));
+        comparison.style.setProperty('--then-weight', (0.35 + 0.65 * (1 - v / 100)).toFixed(3));
+        comparison.style.setProperty('--now-weight', (0.35 + 0.65 * (v / 100)).toFixed(3));
       }
 
       if (readout) {
         readout.textContent =
           m === 'blink' ? (showThen ? label(then) + ', whole' : label(now) + ', whole')
-        : m === 'fade'  ? Math.round(v) + '% ' + label(then)
+        : m === 'fade'  ? Math.round(v) + '% ' + label(now)
         :                 Math.round(v) + '% revealed';
       }
 
@@ -65,8 +67,8 @@
 
       range.setAttribute('aria-valuetext',
         m === 'blink' ? (showThen ? label(then) : label(now))
-                      : Math.round(v) + '% ' + label(then) + ', ' +
-                        (100 - Math.round(v)) + '% ' + label(now));
+                      : Math.round(v) + '% ' + label(now) + ', ' +
+                        (100 - Math.round(v)) + '% ' + label(then));
     }
 
     function setMode(next) {

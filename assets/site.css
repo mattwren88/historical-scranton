@@ -328,8 +328,10 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
    wrapper instead of the stage. */
 .stage picture,
 .row__frame picture{display:contents}
-/* The historical plate sits on top, clipped to the seam. */
-.plate--then{z-index:2;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+/* The historical plate sits on top, clipped to the seam. Then lives left of
+   the seam, now lives right of it, matching the yr labels either side of the
+   scale — so dragging right toward "Today" reveals more of "now". */
+.plate--then{z-index:2;clip-path:inset(0 0 0 var(--pos))}
 
 .seam{
   position:absolute;
