@@ -119,10 +119,6 @@ a:hover{color:var(--accent)}
 .icon--gold{color:var(--accent)}
 
 /* ==========================================================================
-   Index — the series as a printed ledger
-   ========================================================================== */
-
-/* ==========================================================================
    The mark
    ========================================================================== */
 
@@ -159,15 +155,6 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   gap:12px var(--space-8);
   padding-bottom:var(--space-4);
   border-bottom:1px solid var(--ink);
-}
-
-.masthead__span{
-  margin:0;
-  text-align:right;
-  font-size:12px;
-  line-height:1.5;
-  color:var(--n-700);
-  font-feature-settings:'tnum';
 }
 
 .intro{
@@ -268,7 +255,6 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
 @media (hover:hover){.row:hover .row__mark{opacity:1;transform:none}}
 .row:focus-visible .row__mark{opacity:1;transform:none}
 
-.grid-error{margin:0;padding:20px 0;font-size:14px;color:var(--accent-700)}
 
 .sitefoot{
   margin-top:var(--space-8);
@@ -295,7 +281,6 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   text-transform:uppercase;
 }
 .topbar a{text-decoration:none}
-.topbar__series{color:var(--n-700)}
 
 /* Grid, not flex: a flex line's width depends on what else shares the line,
    so the instant the sidecar wraps off it, the stage's flex-grow share
@@ -338,6 +323,11 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   pointer-events:none;
   -webkit-user-drag:none;
 }
+/* <picture> exists only to offer format alternatives; it must not become a
+   box, or the absolutely-positioned plate inside it would resolve against the
+   wrapper instead of the stage. */
+.stage picture,
+.row__frame picture{display:contents}
 /* The historical plate sits on top, clipped to the seam. */
 .plate--then{z-index:2;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 
@@ -601,7 +591,6 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   .row__mark{display:none}
   .modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
   .mode{padding:7px 8px;font-size:10px;letter-spacing:.1em}
-  .masthead__span{text-align:left}
   .expand{display:none}
 }
 

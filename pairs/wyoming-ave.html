@@ -3,10 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wyoming Avenue Looking South — Then &amp; Now</title>
+<title>Wyoming Avenue Looking South &mdash; Then &amp; Now</title>
 <meta name="description" content="A mid-century linen postcard of Wyoming Avenue in Scranton, looking south, set against the same view on Google Street View today.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" href="../assets/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/lora.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="../images/wyoming-ave/now-768.avif 768w, ../images/wyoming-ave/now-1024.avif 1024w, ../images/wyoming-ave/now-1536.avif 1536w, ../images/wyoming-ave/now-2048.avif 2048w" imagesizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
 </head>
 <body data-pair="wyoming-ave">
 <main class="page">
@@ -22,12 +26,24 @@
 
   <div class="pair">
 
-    <div class="comparison" data-mode="slide">
+    <div class="comparison" data-mode="slide" style="--plate:2048/1271">
       <div class="stage plate">
-        <img class="plate--now"  src="../images/wyoming-ave/now.jpg"  width="2048" height="1271"
-             alt="Wyoming Avenue today: a red brick church on the right, a stone church tower at the far left, and surface parking along the block between them." draggable="false">
-        <img class="plate--then" src="../images/wyoming-ave/then.jpg" width="2048" height="1271"
-             alt="A linen postcard of the same block: shopfronts and theatre marquees line the street, with cars parked along both kerbs and a beacon on the tower closing the view." draggable="false">
+        <picture>
+          <source type="image/avif" srcset="../images/wyoming-ave/now-768.avif 768w, ../images/wyoming-ave/now-1024.avif 1024w, ../images/wyoming-ave/now-1536.avif 1536w, ../images/wyoming-ave/now-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/wyoming-ave/now-768.webp 768w, ../images/wyoming-ave/now-1024.webp 1024w, ../images/wyoming-ave/now-1536.webp 1536w, ../images/wyoming-ave/now-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--now" src="../images/wyoming-ave/now.jpg"
+               srcset="../images/wyoming-ave/now-768.jpg 768w, ../images/wyoming-ave/now-1024.jpg 1024w, ../images/wyoming-ave/now-1536.jpg 1536w, ../images/wyoming-ave/now-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="Wyoming Avenue today: a red brick church on the right, a stone church tower at the far left, and surface parking along the block between them." draggable="false">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../images/wyoming-ave/then-768.avif 768w, ../images/wyoming-ave/then-1024.avif 1024w, ../images/wyoming-ave/then-1536.avif 1536w, ../images/wyoming-ave/then-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/wyoming-ave/then-768.webp 768w, ../images/wyoming-ave/then-1024.webp 1024w, ../images/wyoming-ave/then-1536.webp 1536w, ../images/wyoming-ave/then-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--then" src="../images/wyoming-ave/then.jpg"
+               srcset="../images/wyoming-ave/then-768.jpg 768w, ../images/wyoming-ave/then-1024.jpg 1024w, ../images/wyoming-ave/then-1536.jpg 1536w, ../images/wyoming-ave/then-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="A linen postcard of the same block: shopfronts and theatre marquees line the street, with cars parked along both kerbs and a beacon on the tower closing the view." draggable="false">
+        </picture>
         <span class="seam"></span>
         <input class="range" type="range" min="0" max="100" step="0.1" value="50"
                aria-label="Compare the mid-century postcard with today. Drag, or use the arrow keys.">
@@ -59,10 +75,7 @@
       <h1 class="display pair-title">Wyoming&nbsp;Avenue<br>Looking&nbsp;South</h1>
       <p class="where"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Wyoming Avenue, looking south</p>
       <p class="standfirst">
-        Two churches bookend the block, and both are still standing. Between them the
-    card counts off a shopping and theatre district — the State and Comerford
-    marquees, an A&amp;P, Henry&rsquo;s 5 &amp; 10, the Savoy Restaurant, the Tip
-    Toe Inn. Most of that stretch is a parking lot now.
+        Two churches bookend the block, and both are still standing. Between them the card counts off a shopping and theatre district — the State and Comerford marquees, an A&amp;P, Henry&rsquo;s 5 &amp; 10, the Savoy Restaurant, the Tip Toe Inn. Most of that stretch is a parking lot now.
       </p>
 
       <table class="credits">
@@ -89,8 +102,8 @@
 
 </main>
 
-<script src="../data/pairs.js"></script>
-<script src="../assets/slider.js"></script>
-<script src="../assets/series.js"></script>
+<script src="../data/pairs.js" defer></script>
+<script src="../assets/slider.js" defer></script>
+<script src="../assets/series.js" defer></script>
 </body>
 </html>

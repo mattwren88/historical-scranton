@@ -3,10 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lackawanna Avenue Bridge — Then &amp; Now</title>
+<title>Lackawanna Avenue Bridge &mdash; Then &amp; Now</title>
 <meta name="description" content="The Lackawanna Avenue bridge in Scranton, photographed in the early 1900s with its trolley tracks, and set against the same crossing on Google Street View today with the Central Railroad of New Jersey station still standing at the far end.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" href="../assets/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/lora.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="../images/lackawanna-ave-bridge/now-768.avif 768w, ../images/lackawanna-ave-bridge/now-1024.avif 1024w, ../images/lackawanna-ave-bridge/now-1536.avif 1536w, ../images/lackawanna-ave-bridge/now-2048.avif 2048w" imagesizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
 </head>
 <body data-pair="lackawanna-ave-bridge">
 <main class="page">
@@ -22,12 +26,24 @@
 
   <div class="pair">
 
-    <div class="comparison" data-mode="slide">
+    <div class="comparison" data-mode="slide" style="--plate:2048/1271">
       <div class="stage plate">
-        <img class="plate--now"  src="../images/lackawanna-ave-bridge/now.jpg"  width="2048" height="1271"
-             alt="The crossing today: a wide concrete deck with plain parapets and a row of modern lamp standards, a few cars coming the other way, and the brick station with its conical-roofed tower still standing at the right-hand end." draggable="false">
-        <img class="plate--then" src="../images/lackawanna-ave-bridge/then.jpg" width="2048" height="1271"
-             alt="The bridge in the early 1900s: men in flat caps and overcoats standing along a plank barrier on the left, trolley tracks running up the deck toward a streetcar in the middle distance, overhead wires strung from poles, an ornate cast-iron lamp standard and a diamond warning sign at the left edge, and men with bicycles at the right-hand rail. The station's turret rises above the roofs on the right." draggable="false">
+        <picture>
+          <source type="image/avif" srcset="../images/lackawanna-ave-bridge/now-768.avif 768w, ../images/lackawanna-ave-bridge/now-1024.avif 1024w, ../images/lackawanna-ave-bridge/now-1536.avif 1536w, ../images/lackawanna-ave-bridge/now-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/lackawanna-ave-bridge/now-768.webp 768w, ../images/lackawanna-ave-bridge/now-1024.webp 1024w, ../images/lackawanna-ave-bridge/now-1536.webp 1536w, ../images/lackawanna-ave-bridge/now-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--now" src="../images/lackawanna-ave-bridge/now.jpg"
+               srcset="../images/lackawanna-ave-bridge/now-768.jpg 768w, ../images/lackawanna-ave-bridge/now-1024.jpg 1024w, ../images/lackawanna-ave-bridge/now-1536.jpg 1536w, ../images/lackawanna-ave-bridge/now-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="The crossing today: a wide concrete deck with plain parapets and a row of modern lamp standards, a few cars coming the other way, and the brick station with its conical-roofed tower still standing at the right-hand end." draggable="false">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../images/lackawanna-ave-bridge/then-768.avif 768w, ../images/lackawanna-ave-bridge/then-1024.avif 1024w, ../images/lackawanna-ave-bridge/then-1536.avif 1536w, ../images/lackawanna-ave-bridge/then-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/lackawanna-ave-bridge/then-768.webp 768w, ../images/lackawanna-ave-bridge/then-1024.webp 1024w, ../images/lackawanna-ave-bridge/then-1536.webp 1536w, ../images/lackawanna-ave-bridge/then-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--then" src="../images/lackawanna-ave-bridge/then.jpg"
+               srcset="../images/lackawanna-ave-bridge/then-768.jpg 768w, ../images/lackawanna-ave-bridge/then-1024.jpg 1024w, ../images/lackawanna-ave-bridge/then-1536.jpg 1536w, ../images/lackawanna-ave-bridge/then-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="The bridge in the early 1900s: men in flat caps and overcoats standing along a plank barrier on the left, trolley tracks running up the deck toward a streetcar in the middle distance, overhead wires strung from poles, an ornate cast-iron lamp standard and a diamond warning sign at the left edge, and men with bicycles at the right-hand rail. The station's turret rises above the roofs on the right." draggable="false">
+        </picture>
         <span class="seam"></span>
         <input class="range" type="range" min="0" max="100" step="0.1" value="50"
                aria-label="Compare the early 1900s with today. Drag, or use the arrow keys.">
@@ -59,13 +75,7 @@
       <h1 class="display pair-title">Lackawanna&nbsp;Avenue<br>Bridge</h1>
       <p class="where"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Lackawanna Avenue at the river crossing</p>
       <p class="standfirst">
-        Almost nothing about this photograph is recorded &mdash; not the day, not
-    the crew standing on the deck, not what they had stopped for. The one thing
-    in the frame that can be dated is the building at the far end: the Central
-    Railroad of New Jersey&rsquo;s passenger station, built between 1891 and
-    1893 to a Wilson Brothers design and on the National Register since 1979.
-    It is still there. The bridge under the photographer&rsquo;s feet is not
-    &mdash; the crossing was rebuilt, and the trolley tracks went with it.
+        Almost nothing about this photograph is recorded &mdash; not the day, not the crew standing on the deck, not what they had stopped for. The one thing in the frame that can be dated is the building at the far end: the Central Railroad of New Jersey&rsquo;s passenger station, built between 1891 and 1893 to a Wilson Brothers design and on the National Register since 1979. It is still there. The bridge under the photographer&rsquo;s feet is not &mdash; the crossing was rebuilt, and the trolley tracks went with it.
       </p>
 
       <table class="credits">
@@ -92,8 +102,8 @@
 
 </main>
 
-<script src="../data/pairs.js"></script>
-<script src="../assets/slider.js"></script>
-<script src="../assets/series.js"></script>
+<script src="../data/pairs.js" defer></script>
+<script src="../assets/slider.js" defer></script>
+<script src="../assets/series.js" defer></script>
 </body>
 </html>

@@ -3,10 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Hotel Terrace — Then &amp; Now</title>
+<title>The Hotel Terrace &mdash; Then &amp; Now</title>
 <meta name="description" content="The Hotel Terrace at Wyoming Avenue and Vine Street, Scranton, photographed around 1900 and set against the cleared site on Google Street View today.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" href="../assets/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/lora.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="../images/terrace-hotel/now-768.avif 768w, ../images/terrace-hotel/now-1024.avif 1024w, ../images/terrace-hotel/now-1536.avif 1536w, ../images/terrace-hotel/now-2048.avif 2048w" imagesizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
 </head>
 <body data-pair="terrace-hotel">
 <main class="page">
@@ -22,12 +26,24 @@
 
   <div class="pair">
 
-    <div class="comparison" data-mode="slide">
+    <div class="comparison" data-mode="slide" style="--plate:2048/1271">
       <div class="stage plate">
-        <img class="plate--now"  src="../images/terrace-hotel/now.jpg"  width="2048" height="1271"
-             alt="The corner today: the hotel site is a flat parking lot behind barricades, with a traffic signal at the crossing and the stone retaining wall still holding the raised ground on the right." draggable="false">
-        <img class="plate--then" src="../images/terrace-hotel/then.jpg" width="2048" height="1271"
-             alt="A winter photograph of the Hotel Terrace: a four-storey shingled hotel with dormers along its roof and a conical corner turret lettered TERRACE, standing above a stone terrace wall on the corner." draggable="false">
+        <picture>
+          <source type="image/avif" srcset="../images/terrace-hotel/now-768.avif 768w, ../images/terrace-hotel/now-1024.avif 1024w, ../images/terrace-hotel/now-1536.avif 1536w, ../images/terrace-hotel/now-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/terrace-hotel/now-768.webp 768w, ../images/terrace-hotel/now-1024.webp 1024w, ../images/terrace-hotel/now-1536.webp 1536w, ../images/terrace-hotel/now-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--now" src="../images/terrace-hotel/now.jpg"
+               srcset="../images/terrace-hotel/now-768.jpg 768w, ../images/terrace-hotel/now-1024.jpg 1024w, ../images/terrace-hotel/now-1536.jpg 1536w, ../images/terrace-hotel/now-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="The corner today: the hotel site is a flat parking lot behind barricades, with a traffic signal at the crossing and the stone retaining wall still holding the raised ground on the right." draggable="false">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../images/terrace-hotel/then-768.avif 768w, ../images/terrace-hotel/then-1024.avif 1024w, ../images/terrace-hotel/then-1536.avif 1536w, ../images/terrace-hotel/then-2048.avif 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <source type="image/webp" srcset="../images/terrace-hotel/then-768.webp 768w, ../images/terrace-hotel/then-1024.webp 1024w, ../images/terrace-hotel/then-1536.webp 1536w, ../images/terrace-hotel/then-2048.webp 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px">
+          <img class="plate--then" src="../images/terrace-hotel/then.jpg"
+               srcset="../images/terrace-hotel/then-768.jpg 768w, ../images/terrace-hotel/then-1024.jpg 1024w, ../images/terrace-hotel/then-1536.jpg 1536w, ../images/terrace-hotel/then-2048.jpg 2048w" sizes="(max-width: 860px) 100vw, (max-width: 1224px) calc(100vw - 88px), 1136px"
+               width="2048" height="1271"
+               alt="A winter photograph of the Hotel Terrace: a four-storey shingled hotel with dormers along its roof and a conical corner turret lettered TERRACE, standing above a stone terrace wall on the corner." draggable="false">
+        </picture>
         <span class="seam"></span>
         <input class="range" type="range" min="0" max="100" step="0.1" value="50"
                aria-label="Compare around 1900 with today. Drag, or use the arrow keys.">
@@ -59,10 +75,7 @@
       <h1 class="display pair-title">The&nbsp;Hotel<br>Terrace</h1>
       <p class="where"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Wyoming Avenue at Vine Street</p>
       <p class="standfirst">
-        Opened in 1894 by William Henry Whyte, it became the Hotel Vine, then the
-    Hotel Corine, and by the 1940s the Hotel Scranton, whose cheap rooms housed
-    people with nowhere else to go. Fire took it in 1986 and the site was
-    cleared. The stone wall across the street is still standing.
+        Opened in 1894 by William Henry Whyte, it became the Hotel Vine, then the Hotel Corine, and by the 1940s the Hotel Scranton, whose cheap rooms housed people with nowhere else to go. Fire took it in 1986 and the site was cleared. The stone wall across the street is still standing.
       </p>
 
       <table class="credits">
@@ -89,8 +102,8 @@
 
 </main>
 
-<script src="../data/pairs.js"></script>
-<script src="../assets/slider.js"></script>
-<script src="../assets/series.js"></script>
+<script src="../data/pairs.js" defer></script>
+<script src="../assets/slider.js" defer></script>
+<script src="../assets/series.js" defer></script>
 </body>
 </html>

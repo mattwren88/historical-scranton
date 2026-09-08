@@ -7,6 +7,8 @@
 <meta name="description" content="Street scenes of Scranton, Pennsylvania, photographed a century apart and aligned so you can slide between them.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="preload" href="assets/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/lora.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 <main class="page">
@@ -28,7 +30,309 @@
     years disappear. Pick a corner below to get started.
   </p>
 
-  <ul class="ledger" id="grid"></ul>
+  <ul class="ledger">
+    <!-- ledger:start -->
+    <li>
+      <a class="row" href="pairs/terrace-hotel.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/terrace-hotel/thumb-now-320.avif 320w, images/terrace-hotel/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/terrace-hotel/thumb-now-320.webp 320w, images/terrace-hotel/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/terrace-hotel/thumb-now.jpg" srcset="images/terrace-hotel/thumb-now-320.jpg 320w, images/terrace-hotel/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" alt="The Hotel Terrace, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/terrace-hotel/thumb-then-320.avif 320w, images/terrace-hotel/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/terrace-hotel/thumb-then-320.webp 320w, images/terrace-hotel/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/terrace-hotel/thumb-then.jpg" srcset="images/terrace-hotel/thumb-then-320.jpg 320w, images/terrace-hotel/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Hotel Terrace</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Wyoming Avenue at Vine Street</p>
+        <p class="row__blurb">Burned in 1986 and cleared. The stone wall across the street is the only thing left to line up.</p>
+        </div>
+        <p class="row__years">c. 1900<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/albright.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/albright/thumb-now-320.avif 320w, images/albright/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/albright/thumb-now-320.webp 320w, images/albright/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/albright/thumb-now.jpg" srcset="images/albright/thumb-now-320.jpg 320w, images/albright/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" alt="Albright Memorial Library, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/albright/thumb-then-320.avif 320w, images/albright/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/albright/thumb-then-320.webp 320w, images/albright/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/albright/thumb-then.jpg" srcset="images/albright/thumb-then-320.jpg 320w, images/albright/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Albright Library</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Vine Street at North Washington Avenue</p>
+        <p class="row__blurb">Modelled on the Cluny in Paris. A century on, what has changed is mostly the signage.</p>
+        </div>
+        <p class="row__years">c. 1900<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/courthouse-square.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/courthouse-square/thumb-now-320.avif 320w, images/courthouse-square/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/courthouse-square/thumb-now-320.webp 320w, images/courthouse-square/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/courthouse-square/thumb-now.jpg" srcset="images/courthouse-square/thumb-now-320.jpg 320w, images/courthouse-square/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="Courthouse Square, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/courthouse-square/thumb-then-320.avif 320w, images/courthouse-square/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/courthouse-square/thumb-then-320.webp 320w, images/courthouse-square/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/courthouse-square/thumb-then.jpg" srcset="images/courthouse-square/thumb-then-320.jpg 320w, images/courthouse-square/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Courthouse Square</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Spruce Street at North Washington Avenue</p>
+        <p class="row__blurb">The memorial column was new when this was taken. It is still the only thing in the frame that has not moved.</p>
+        </div>
+        <p class="row__years">c. 1905<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/high-school.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/high-school/thumb-now-320.avif 320w, images/high-school/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/high-school/thumb-now-320.webp 320w, images/high-school/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/high-school/thumb-now.jpg" srcset="images/high-school/thumb-now-320.jpg 320w, images/high-school/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="High School, Scranton, Pa., today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/high-school/thumb-then-320.avif 320w, images/high-school/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/high-school/thumb-then-320.webp 320w, images/high-school/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/high-school/thumb-then.jpg" srcset="images/high-school/thumb-then-320.jpg 320w, images/high-school/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">High School</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Vine Street at Adams Avenue</p>
+        <p class="row__blurb">The tower and the roofline hold their positions; the elms over the sidewalk do not.</p>
+        </div>
+        <p class="row__years">1910<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/providence-auditorium.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/providence-auditorium/thumb-now-320.avif 320w, images/providence-auditorium/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/providence-auditorium/thumb-now-320.webp 320w, images/providence-auditorium/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/providence-auditorium/thumb-now.jpg" srcset="images/providence-auditorium/thumb-now-320.jpg 320w, images/providence-auditorium/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="The Auditorium, Providence, Pa., today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/providence-auditorium/thumb-then-320.avif 320w, images/providence-auditorium/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/providence-auditorium/thumb-then-320.webp 320w, images/providence-auditorium/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/providence-auditorium/thumb-then.jpg" srcset="images/providence-auditorium/thumb-then-320.jpg 320w, images/providence-auditorium/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">The Auditorium</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>North Main Avenue at Oak Street</p>
+        <p class="row__blurb">The shape survived the century. The surface did not.</p>
+        </div>
+        <p class="row__years">c. 1910<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/scranton-dry-goods.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/scranton-dry-goods/thumb-now-320.avif 320w, images/scranton-dry-goods/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/scranton-dry-goods/thumb-now-320.webp 320w, images/scranton-dry-goods/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/scranton-dry-goods/thumb-now.jpg" srcset="images/scranton-dry-goods/thumb-now-320.jpg 320w, images/scranton-dry-goods/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="Scranton Dry Goods Co., today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/scranton-dry-goods/thumb-then-320.avif 320w, images/scranton-dry-goods/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/scranton-dry-goods/thumb-then-320.webp 320w, images/scranton-dry-goods/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/scranton-dry-goods/thumb-then.jpg" srcset="images/scranton-dry-goods/thumb-then-320.jpg 320w, images/scranton-dry-goods/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Scranton Dry Goods</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Lackawanna Avenue at Wyoming Avenue</p>
+        <p class="row__blurb">The signs called it Scranton's Busiest Corner. The building is still standing; the signs are not.</p>
+        </div>
+        <p class="row__years">1920s<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/wyoming-ave.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/wyoming-ave/thumb-now-320.avif 320w, images/wyoming-ave/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/wyoming-ave/thumb-now-320.webp 320w, images/wyoming-ave/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/wyoming-ave/thumb-now.jpg" srcset="images/wyoming-ave/thumb-now-320.jpg 320w, images/wyoming-ave/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="Wyoming Avenue Looking South, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/wyoming-ave/thumb-then-320.avif 320w, images/wyoming-ave/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/wyoming-ave/thumb-then-320.webp 320w, images/wyoming-ave/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/wyoming-ave/thumb-then.jpg" srcset="images/wyoming-ave/thumb-then-320.jpg 320w, images/wyoming-ave/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Wyoming Avenue</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Wyoming Avenue, looking south</p>
+        <p class="row__blurb">Two churches bookend the block and both still stand. Most of what filled the gap is now a parking lot.</p>
+        </div>
+        <p class="row__years">Mid-century<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/hotel-jermyn.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/hotel-jermyn/thumb-now-320.avif 320w, images/hotel-jermyn/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/hotel-jermyn/thumb-now-320.webp 320w, images/hotel-jermyn/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/hotel-jermyn/thumb-now.jpg" srcset="images/hotel-jermyn/thumb-now-320.jpg 320w, images/hotel-jermyn/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="The Hotel Jermyn, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/hotel-jermyn/thumb-then-320.avif 320w, images/hotel-jermyn/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/hotel-jermyn/thumb-then-320.webp 320w, images/hotel-jermyn/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/hotel-jermyn/thumb-then.jpg" srcset="images/hotel-jermyn/thumb-then-320.jpg 320w, images/hotel-jermyn/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Hotel Jermyn</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Spruce Street at Wyoming Avenue</p>
+        <p class="row__blurb">Radler's and the Purple Cow are lettered across the ground floor. Both were gone by 1965; the building wasn't.</p>
+        </div>
+        <p class="row__years">1950s<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/dickson-manufacturing.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/dickson-manufacturing/thumb-now-320.avif 320w, images/dickson-manufacturing/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/dickson-manufacturing/thumb-now-320.webp 320w, images/dickson-manufacturing/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/dickson-manufacturing/thumb-now.jpg" srcset="images/dickson-manufacturing/thumb-now-320.jpg 320w, images/dickson-manufacturing/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="Dickson Manufacturing Co., today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/dickson-manufacturing/thumb-then-320.avif 320w, images/dickson-manufacturing/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/dickson-manufacturing/thumb-then-320.webp 320w, images/dickson-manufacturing/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/dickson-manufacturing/thumb-then.jpg" srcset="images/dickson-manufacturing/thumb-then-320.jpg 320w, images/dickson-manufacturing/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Dickson Works</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Penn Avenue at Vine Street</p>
+        <p class="row__blurb">The works turned out a hundred locomotives a year. The tower still stands, shorn of its spire, over a paper warehouse.</p>
+        </div>
+        <p class="row__years">c. 1895<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/lackawanna-ave-bridge.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/lackawanna-ave-bridge/thumb-now-320.avif 320w, images/lackawanna-ave-bridge/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/lackawanna-ave-bridge/thumb-now-320.webp 320w, images/lackawanna-ave-bridge/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/lackawanna-ave-bridge/thumb-now.jpg" srcset="images/lackawanna-ave-bridge/thumb-now-320.jpg 320w, images/lackawanna-ave-bridge/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="The Lackawanna Avenue Bridge, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/lackawanna-ave-bridge/thumb-then-320.avif 320w, images/lackawanna-ave-bridge/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/lackawanna-ave-bridge/thumb-then-320.webp 320w, images/lackawanna-ave-bridge/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/lackawanna-ave-bridge/thumb-then.jpg" srcset="images/lackawanna-ave-bridge/thumb-then-320.jpg 320w, images/lackawanna-ave-bridge/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Lackawanna Avenue Bridge</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Lackawanna Avenue at the river crossing</p>
+        <p class="row__blurb">The Central Railroad of New Jersey station still stands at the far end. The bridge under it has been rebuilt, and the trolleys went with it.</p>
+        </div>
+        <p class="row__years">c. 1910<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/st-charles-hotel.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/st-charles-hotel/thumb-now-320.avif 320w, images/st-charles-hotel/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/st-charles-hotel/thumb-now-320.webp 320w, images/st-charles-hotel/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/st-charles-hotel/thumb-now.jpg" srcset="images/st-charles-hotel/thumb-now-320.jpg 320w, images/st-charles-hotel/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="The St. Charles Hotel, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/st-charles-hotel/thumb-then-320.avif 320w, images/st-charles-hotel/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/st-charles-hotel/thumb-then-320.webp 320w, images/st-charles-hotel/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/st-charles-hotel/thumb-then.jpg" srcset="images/st-charles-hotel/thumb-then-320.jpg 320w, images/st-charles-hotel/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">St. Charles Hotel</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>128 Penn Avenue</p>
+        <p class="row__blurb">One of the city's first hotels and, for two decades, the unofficial seat of local Democratic politics. Razed in 1913, its replacement razed again in 1956; a parking garage holds the corner now.</p>
+        </div>
+        <p class="row__years">c. 1900<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/wyoming-ave-theater-row.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/wyoming-ave-theater-row/thumb-now-320.avif 320w, images/wyoming-ave-theater-row/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/wyoming-ave-theater-row/thumb-now-320.webp 320w, images/wyoming-ave-theater-row/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/wyoming-ave-theater-row/thumb-now.jpg" srcset="images/wyoming-ave-theater-row/thumb-now-320.jpg 320w, images/wyoming-ave-theater-row/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="Wyoming Avenue's Theater Row, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/wyoming-ave-theater-row/thumb-then-320.avif 320w, images/wyoming-ave-theater-row/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/wyoming-ave-theater-row/thumb-then-320.webp 320w, images/wyoming-ave-theater-row/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/wyoming-ave-theater-row/thumb-then.jpg" srcset="images/wyoming-ave-theater-row/thumb-then-320.jpg 320w, images/wyoming-ave-theater-row/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">Theater Row</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>200 block of Wyoming Avenue</p>
+        <p class="row__blurb">Three theaters and five restaurants lined this block on a snowy night in 1936. All of it is gone now, cleared for a parking lot and a mural.</p>
+        </div>
+        <p class="row__years">1936<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <li>
+      <a class="row" href="pairs/spruce-street-trolley.html">
+        <span class="row__frame plate">
+          <picture>
+            <source type="image/avif" srcset="images/spruce-street-trolley/thumb-now-320.avif 320w, images/spruce-street-trolley/thumb-now-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/spruce-street-trolley/thumb-now-320.webp 320w, images/spruce-street-trolley/thumb-now-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__now" src="images/spruce-street-trolley/thumb-now.jpg" srcset="images/spruce-street-trolley/thumb-now-320.jpg 320w, images/spruce-street-trolley/thumb-now-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="The Last Streetcar, today">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="images/spruce-street-trolley/thumb-then-320.avif 320w, images/spruce-street-trolley/thumb-then-640.avif 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <source type="image/webp" srcset="images/spruce-street-trolley/thumb-then-320.webp 320w, images/spruce-street-trolley/thumb-then-640.webp 640w" sizes="(max-width: 860px) 100vw, 272px">
+            <img class="row__then" src="images/spruce-street-trolley/thumb-then.jpg" srcset="images/spruce-street-trolley/thumb-then-320.jpg 320w, images/spruce-street-trolley/thumb-then-640.jpg 640w" sizes="(max-width: 860px) 100vw, 272px" width="640" height="397" decoding="async" loading="lazy" alt="" aria-hidden="true">
+          </picture>
+        </span>
+        <div>
+          <h2 class="row__title">The Last Streetcar</h2>
+        <p class="row__where"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>400 block of Spruce Street</p>
+        <p class="row__blurb">Car 507 rolled through here on the last day Scranton's streetcars ran. The tracks and wire are gone; the brick building down toward the corner isn't.</p>
+        </div>
+        <p class="row__years">1950<span class="row__to"><svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>today</span></p>
+        <span class="row__mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></span>
+      </a>
+    </li>
+    <!-- ledger:end -->
+  </ul>
 
   <p class="sitefoot">
     Historical images are period postcards and photographs; each page credits its
@@ -38,7 +342,7 @@
 
 </main>
 
-<script src="data/pairs.js"></script>
-<script src="assets/series.js"></script>
+<script src="data/pairs.js" defer></script>
+<script src="assets/series.js" defer></script>
 </body>
 </html>
