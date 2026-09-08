@@ -116,8 +116,8 @@ const CSS_ALLOWLIST = new Set([
   'pair--wide',    // toggled by slider.js
   'pair--transit', // toggled by slider.js
   'icon--gold',    // built by series.js icon(name, gold)
-  'row__then',     // built by series.js thumb(pair, half)
-  'row__now',      // built by series.js thumb(pair, half)
+  'row__then',     // built by templates.mjs ledger() via the row__${half} template literal
+  'row__now',      // built by templates.mjs ledger() via the row__${half} template literal
   'walk__prev',    // built by series.js walkLink(pair, side)
   'walk__next',    // built by series.js walkLink(pair, side)
   'woff2',         // not a class: matched from the ".woff2" in url('…woff2') inside

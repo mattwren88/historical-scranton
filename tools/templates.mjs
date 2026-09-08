@@ -149,8 +149,8 @@ ${credits(pair)}
 `;
 }
 
-/* The index ledger, rendered statically so the pages are crawlable without JS.
-   Mirrors what series.js builds at runtime; Task 6 retires that runtime path. */
+/* The index ledger is rendered statically here so the site is crawlable
+   and fully rendered without JS running. */
 const ICON_PIN_ROW = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
 const ICON_SWAP = '<svg class="icon icon--gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8l4 4-4 4M2 12h20M6 16l-4-4 4-4"/></svg>';
 const ICON_CHEVRON = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>';

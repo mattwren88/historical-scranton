@@ -19,7 +19,8 @@ for (const pair of pairs) {
 console.log(`built ${pairs.length} pair pages`);
 
 /* The index ledger is injected between markers so the rest of index.html
-   stays hand-written. Task 6 adds the markers; until then, skip quietly. */
+   stays hand-written. index.html is expected to always have ledger markers;
+   the else branch below is a defensive no-op, not a normal path. */
 const indexPath = path.join(ROOT, 'index.html');
 let index = fs.readFileSync(indexPath, 'utf8');
 const start = index.indexOf(LEDGER_START);
@@ -31,5 +32,5 @@ if (start >= 0 && end > start) {
   fs.writeFileSync(indexPath, index);
   console.log('injected the index ledger');
 } else {
-  console.log('index.html has no ledger markers yet — skipping (expected until Task 6)');
+  console.log('index.html has no ledger markers — skipping (should not normally happen)');
 }
