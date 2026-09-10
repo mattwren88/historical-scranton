@@ -196,11 +196,11 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   object-fit:cover;
   display:block;
 }
-/* The historical plate is revealed on hover, so the ledger rehearses the
-   gesture the pair pages are built on. */
-.row__then{opacity:0;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
-@media (hover:hover){.row:hover .row__then{opacity:1}}
-.row:focus-visible .row__then{opacity:1}
+/* The historical plate shows by default; hovering reveals "now", rehearsing
+   the drag gesture the pair pages are built on. */
+.row__then{opacity:1;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
+@media (hover:hover){.row:hover .row__then{opacity:0}}
+.row:focus-visible .row__then{opacity:0}
 
 .row__title{
   margin:0;
@@ -236,7 +236,7 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   font-feature-settings:'tnum';
 }
 .row__to{
-  display:flex;
+  display:inline-flex;
   align-items:center;
   justify-content:flex-end;
   gap:6px;
@@ -594,6 +594,10 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   .modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
   .mode{padding:7px 8px;font-size:10px;letter-spacing:.1em}
   .expand{display:none}
+  .mark--display{flex-direction:column;align-items:flex-start;gap:.2em}
+  .mark--display .mark__then,
+  .mark--display .mark__now{padding:0}
+  .mark--display .mark__seam{width:2.5em;height:1px}
 }
 
 @media (prefers-reduced-motion:reduce){
