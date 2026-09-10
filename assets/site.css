@@ -587,7 +587,7 @@ a.mark:hover .mark__seam{background:var(--accent-700)}
   .pair{grid-template-columns:minmax(0,1fr);gap:var(--space-6)}
   .comparison{grid-column:1;grid-row:1}
   .sidecar{grid-column:1;grid-row:2}
-  .row{grid-template-columns:minmax(0,1fr);gap:0}
+  .row{grid-template-columns:minmax(0,1fr);gap:1em}
   .row__years{text-align:left;margin-top:10px}
   .row__to{justify-content:flex-start}
   .row__mark{display:none}
